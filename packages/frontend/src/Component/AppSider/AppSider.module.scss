@@ -1,0 +1,25 @@
+.app-sider-fix {
+  overflow: visible;
+  height: 100vh;
+  position: fixed;
+  display: block !important;
+  padding-top: 85px;
+  margin-top: -65px;
+  left: 0;
+  z-index: 2;
+  box-shadow: 5px 0px 15px rgb(153, 153, 153);
+  .sider-content {
+    overflow: hidden !important;
+    width: 100%;
+    padding: 0 10px;
+  }
+  
+}
+
+.search-button {
+  border-radius: 3px;
+  margin-left: 20px;
+  position: fixed;
+  margin-top: 25px;
+  z-index: 20;
+}

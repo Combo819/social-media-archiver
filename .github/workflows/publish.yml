@@ -1,0 +1,24 @@
+name: Release
+on:
+  # push:
+  #  tags:
+  #    - "v*.*.*"
+
+jobs:
+  publish: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: pack
+        run: npm run dist
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: CHANGELOG.txt
+          files: |
+            ./dist/linux.tar.gz
+            ./dist/macos.tar.gz
+            ./dist/win.zip
+            ./dist/extension-chrome.zip
+      

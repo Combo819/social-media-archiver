@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "version": "1.0.1",
+  "workspaces": [
+    "packages/*"
+  ],
+  "name": "social-media-archiver",
+  "devDependencies": {
+    "@commitlint/cli": "^13.2.1",
+    "@commitlint/config-conventional": "^13.2.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "git-cz": "^4.8.0",
+    "lerna": "^4.0.0",
+    "prettier": "2.4.1"
+  },
+  "scripts": {
+    "start": "npx lerna run --scope @social-media-archiver/backend --scope @social-media-archiver/frontend start",
+    "dist": "npx lerna bootstrap && npx lerna run --scope @social-media-archiver/backend dist",
+    "commit": "git-cz",
+    "commitmsg": "validate-commit-msg"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

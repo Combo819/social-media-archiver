@@ -1,0 +1,14 @@
+/node_modules
+/.vscode
+credential.json
+/static
+/storage
+/*-rxdb-*
+/credential*
+**/web
+/dist
+/copyScript.js
+/rxdb
+/src/images
+**/node_modules
+**/.vscode

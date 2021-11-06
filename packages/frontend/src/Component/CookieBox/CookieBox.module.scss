@@ -1,0 +1,20 @@
+.cookie-box {
+  .form-item {
+    /* margin-bottom: 0; */
+    textarea {
+      resize: none;
+    }
+    p {
+      height: 150px;
+      border: 1px dashed rgb(180, 180, 180);
+    }
+  }
+  .action-div {
+    float: right;
+
+    .edit-icon{
+        position: relative;
+        top: -30px;
+    }
+  }
+}

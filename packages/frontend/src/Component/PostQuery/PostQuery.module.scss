@@ -1,0 +1,22 @@
+.form {
+  :global {
+    .ant-form-item-label {
+      text-align: left;
+    }
+  }
+  overflow: hidden;
+  .search-button {
+    float: right;
+  }
+}
+
+.date-picker-dropdown {
+  @media screen and (max-width: 560px) {
+    width: 300px;
+    :global {
+      .ant-picker-panels {
+        display: block;
+      }
+    }
+  }
+}

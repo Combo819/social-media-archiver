@@ -1,0 +1,47 @@
+.app-header {
+  background-color: #fff;
+  box-shadow: 0px 5px 15px rgb(196, 196, 196);
+  z-index: 3;
+  /*   .save {
+    margin-right: 100px;
+    @media screen and (max-width: 420px) {
+      margin-right: 30px;
+    }
+  } */
+  .monitor-div {
+    .monitor {
+      cursor: pointer;
+    }
+    .monitor-disabled {
+      cursor: not-allowed;
+    }
+    .question {
+      cursor: pointer;
+      font-size: 14px;
+      color: rgb(102, 102, 102);
+      margin-left: -10px;
+    }
+  }
+  .account {
+    float: right;
+    .icon {
+      cursor: pointer;
+      font-size: 20px;
+    }
+  }
+  .dropdown {
+    display: none;
+  }
+  .space {
+    display: inline-flex;
+  }
+
+  @media screen and (max-width: 550px) {
+    .dropdown {
+      display: inline-block;
+    }
+    .space {
+      display: none;
+    }
+  }
+}

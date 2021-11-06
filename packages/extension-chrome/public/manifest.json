@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "social-media-archiver",
+  "description": "archive a post",
+  "version": "1.0.0",
+  "browser_action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["http://*/","https://*/","storage"]
+}
