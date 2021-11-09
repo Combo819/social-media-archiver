@@ -12,7 +12,7 @@ jobs:
       # ( Build to ./dist or other directory... )
 
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
+        uses: nwtgck/actions-netlify@v1.2.2
         with:
           publish-dir: 'packages/documentation/public'
           production-branch: doc-init
