@@ -1,7 +1,7 @@
 const config = {
   gatsby: {
     pathPrefix: '/',
-    siteUrl: 'https://hasura.io',
+    siteUrl: 'https://github.com/Combo819/social-media-archiver',
     gaTrackingId: null,
     trailingSlash: false,
   },
