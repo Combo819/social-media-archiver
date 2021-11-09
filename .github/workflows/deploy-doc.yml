@@ -10,7 +10,8 @@ jobs:
       - uses: actions/checkout@v2
 
       # ( Build to ./dist or other directory... )
-
+      - name: Build
+        run: npm ci&&npm run build
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2.2
         with:
