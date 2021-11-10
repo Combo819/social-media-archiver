@@ -133,8 +133,20 @@ export default function CommentList() {
                       comment.user && comment.user.username
                     }`}</a>
                   }
-                  description={HtmlParser(comment.content)}
+                  description={
+                    comment.replyTo && (
+                      <div>
+                        reply to{' '}
+                        <a
+                          href={`https://www.zhihu.com/people/${comment.replyTo.id}`}
+                        >
+                          {comment.replyTo.username}
+                        </a>
+                      </div>
+                    )
+                  }
                 />
+                {HtmlParser(comment.content)}
               </List.Item>
             )}
           />

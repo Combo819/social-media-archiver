@@ -30,6 +30,7 @@ type IComment = {
   image?: { name: string; originUrl: string };
   postId: string;
   saveTime: number;
+  replyTo?: IUser;
 };
 
 type IPost = {
