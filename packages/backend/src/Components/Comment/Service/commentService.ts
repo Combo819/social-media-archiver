@@ -71,7 +71,12 @@ class CommentService implements ICommentService {
     commentDoc: CommentDocument,
   ): Promise<ICommentPopulated> {
     const userDoc: UserDocument = await commentDoc.populate('user');
-    return { ...commentDoc.toJSON(), user: userDoc?.toJSON() };
+    const replyTo: UserDocument = await commentDoc.populate('replyTo');
+    return {
+      ...commentDoc.toJSON(),
+      user: userDoc?.toJSON(),
+      replyTo: replyTo?.toJSON(),
+    };
   }
 
   async getOneByIdPopulated(

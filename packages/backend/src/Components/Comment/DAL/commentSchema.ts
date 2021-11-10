@@ -26,6 +26,7 @@ const commentSchema: RxJsonSchema<IComment> = {
       properties: { name: { type: 'string' }, originUrl: { type: 'string' } },
     },
     saveTime: { type: 'number' },
+    replyTo: { type: 'string', ref: 'user' },
   },
   required: ['id', 'content', 'user', 'createTime', 'postId', 'saveTime'],
   indexes: ['user', 'postId'],

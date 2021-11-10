@@ -15,13 +15,18 @@ type IComment = {
   image?: { name: string; originUrl: string };
   postId: string;
   saveTime: number;
+  replyTo?: string;
 };
 
 type CommentDocument = RxDocument<IComment>;
 
 type CommentCollection = RxCollection<IComment>;
 
-type ICommentPopulated = Omit<IComment, 'user'> & { user: IUser };
+type ICommentPopulated = Omit<Omit<IComment, 'user'>, 'replyTo'> & {
+  user: IUser;
+} & {
+  replyTo?: IUser;
+};
 
 interface ICommentDAL extends IBaseDAL<IComment, CommentDocument> {
   addSubComments: (
