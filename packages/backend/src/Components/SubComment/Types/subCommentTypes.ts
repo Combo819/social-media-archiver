@@ -12,6 +12,7 @@ type ISubComment = {
   createTime: number;
   commentId: string;
   saveTime: number;
+  replyTo?: string;
 };
 
 type SubCommentDocument = RxDocument<ISubComment>;
@@ -19,7 +20,9 @@ type SubCommentDocument = RxDocument<ISubComment>;
 type SubCommentCollection = RxCollection<ISubComment>;
 
 interface ISubCommentDAL extends IBaseDAL<ISubComment, SubCommentDocument> {}
-type ISubCommentPopulated = Omit<ISubComment, 'user'> & { user?: IUser };
+type ISubCommentPopulated = Omit<Omit<ISubComment, 'user'>, 'replyTo'> & {
+  user?: IUser;
+} & { replyTo?: IUser };
 
 interface ISubCommentService
   extends IBaseService<

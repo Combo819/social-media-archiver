@@ -16,7 +16,8 @@ export const subCommentSchema: RxJsonSchema<ISubComment> = {
     user: { type: 'string', ref: 'user' },
     commentId: { type: 'string', ref: 'comment' },
     saveTime: { type: 'number' },
+    replyTo: { type: 'string', ref: 'user' },
   },
-  required: ['id', 'user', 'createTime', 'commentId', 'saveTime',"content"],
+  required: ['id', 'user', 'createTime', 'commentId', 'saveTime', 'content'],
   indexes: ['commentId', 'user'],
 };

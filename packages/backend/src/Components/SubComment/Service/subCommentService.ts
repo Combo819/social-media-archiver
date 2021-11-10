@@ -53,7 +53,14 @@ class SubCommentService implements ISubCommentService {
     const userDoc: UserDocument | undefined = await subCommentDoc.populate(
       'user',
     );
-    return { ...subCommentDoc.toJSON(), user: userDoc?.toJSON() };
+    const replyTo: UserDocument | null = await subCommentDoc.populate(
+      'replyTo',
+    );
+    return {
+      ...subCommentDoc.toJSON(),
+      user: userDoc?.toJSON(),
+      replyTo: replyTo?.toJSON(),
+    };
   }
 
   async queryPopulated(query: MangoQuery) {
