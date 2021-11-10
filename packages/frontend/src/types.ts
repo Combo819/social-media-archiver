@@ -16,6 +16,7 @@ type ISubComment = {
   createTime: number;
   commentId: string;
   saveTime: number;
+  replyTo?: IUser;
 };
 
 type IComment = {

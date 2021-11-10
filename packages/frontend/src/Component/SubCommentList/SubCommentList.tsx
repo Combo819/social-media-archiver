@@ -74,8 +74,20 @@ export default function CommentList() {
                       href={subComment?.user?.profileUrl}
                     >{`@${subComment.user && subComment.user.username}`}</a>
                   }
-                  description={HtmlParser(subComment.content)}
+                  description={
+                    subComment.replyTo && (
+                      <div>
+                        reply to{' '}
+                        <a
+                          href={`https://www.zhihu.com/people/${subComment.replyTo.id}`}
+                        >
+                          {subComment.replyTo.username}
+                        </a>
+                      </div>
+                    )
+                  }
                 />
+                {HtmlParser(subComment.content)}
               </List.Item>
             )}
           />
