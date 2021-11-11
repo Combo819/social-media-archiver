@@ -1,9 +1,8 @@
 import { crawlerAxios } from '../../../Config';
 import { AxiosPromise } from 'axios';
+import { NotImplementedError } from '../../../Error/ErrorClass';
 function getPostApi(postId: string): AxiosPromise {
-  return crawlerAxios({
-    url: `/detail/${postId}`,
-  });
+  throw new NotImplementedError('getPostApi is not implemented');
 }
 
 export { getPostApi };

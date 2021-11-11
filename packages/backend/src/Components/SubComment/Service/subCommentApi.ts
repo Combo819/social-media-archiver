@@ -1,8 +1,9 @@
 import { crawlerAxios } from '../../../Config';
 import { AxiosPromise } from 'axios';
+import { NotImplementedError } from '../../../Error/ErrorClass';
 
 function getSubCommentApi(): AxiosPromise {
-  return crawlerAxios({});
+  throw new NotImplementedError('getSubCommentApi is not implemented');
 }
 
 export { getSubCommentApi };
