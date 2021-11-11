@@ -70,10 +70,8 @@ class UserService implements IUserService {
     const userDoc: UserDocument | null = await this.userDAL.findOneById(userId);
     if (userDoc) return userDoc;
     try {
-      const { data } = await getUserInfoByIdApi(userId);
+      const userRaw = await getUserInfoByIdApi(userId);
 
-      const userRaw =
-        undefined; /* extract the user raw information from the data above */
       if (userRaw) {
         const userDoc: UserDocument = await this.save(
           this.transformUserResponse(userRaw),

@@ -41,7 +41,7 @@ class RepostCommentCrawler implements IRepostCommentCrawler {
   startCrawling = (postDoc: PostDocument) => {
     asyncPriorityQueuePush(
       this.crawl,
-      { postDoc, /* other initial params here */ },
+      { postDoc /* other initial params here */ },
       Q_PRIORITY.CRAWLER_REPOST_COMMENT,
     );
   };
@@ -49,8 +49,8 @@ class RepostCommentCrawler implements IRepostCommentCrawler {
   private crawl = async (params: RepostCommentCrawlerParams) => {
     const { postDoc /* deconstruct other params for the API here  */ } = params;
     const res = await getRepostCommentApi(/* API params here */);
-    const { nextParams, usersRaw, infos } = this.transformData(res, params);
-
+    const { usersRaw, infos } = this.scrapeInfoUser(res, postDoc.get('id'));
+    const nextParams = this.transformNextParams(res, params);
     map(infos, asyncify(this.repostCommentService.save));
     map(
       usersRaw.map((userRaw) =>
@@ -77,14 +77,20 @@ class RepostCommentCrawler implements IRepostCommentCrawler {
    * @param prevParams previous params
    * @returns {nextParams, infos, usersRaw}
    */
-  private transformData(
+  private scrapeInfoUser(
     res: any,
-    prevParams: RepostCommentCrawlerParams,
+    postId: string,
   ): {
-    nextParams: RepostCommentCrawlerParams | null;
     infos: IRepostComment[];
     usersRaw: unknown[];
   } {
+    throw new NotImplementedError('Not implemented');
+  }
+
+  private transformNextParams(
+    res: any,
+    prevParams: RepostCommentCrawlerParams,
+  ): RepostCommentCrawlerParams | null {
     throw new NotImplementedError('Not implemented');
   }
 }

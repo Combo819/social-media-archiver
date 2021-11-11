@@ -45,7 +45,7 @@ class SubCommentCrawler implements ISubCommentCrawler {
   startCrawling = (commentDoc: CommentDocument) => {
     asyncPriorityQueuePush(
       this.crawl,
-      { commentDoc, /* other initial params here */ },
+      { commentDoc /* other initial params here */ },
       Q_PRIORITY.CRAWLER_SUB_COMMENT,
     );
   };
@@ -55,8 +55,8 @@ class SubCommentCrawler implements ISubCommentCrawler {
       params;
     const res = await getSubCommentApi(/* API params here */);
 
-    const { nextParams, infos, usersRaw } = this.transformData(res, params);
-
+    const { infos, usersRaw } = this.scrapeInfoUser(res, commentDoc.get('id'));
+    const nextParams = this.transformNextParams(res, params);
     await map(infos, asyncify(this.subCommentService.save));
     await map(
       usersRaw.map((userRaw) =>
@@ -80,20 +80,20 @@ class SubCommentCrawler implements ISubCommentCrawler {
     }
   };
 
-  /**
-   * take in the response from the API and transform it into the nextParams for the next request, and the infos of the comments,and the users
-   * @param res the axios api response object
-   * @param prevParams previous params
-   * @returns {nextParams, infos, usersRaw}
-   */
-  private transformData(
+  private scrapeInfoUser(
     res: any,
-    prevParams: SubCommentCrawlerParams,
+    commentId: string,
   ): {
-    nextParams: SubCommentCrawlerParams | null;
     infos: ISubComment[];
     usersRaw: unknown[];
   } {
+    throw new NotImplementedError('Not implemented');
+  }
+
+  private transformNextParams(
+    res: any,
+    prevParams: SubCommentCrawlerParams,
+  ): SubCommentCrawlerParams | null {
     throw new NotImplementedError('Not implemented');
   }
 }

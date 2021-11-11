@@ -147,8 +147,7 @@ class PostCrawler implements IPostCrawler {
     embedImages: string[];
   } {
     /* extract the information here. If it's a html document, 
-    try to manipulate the html with cheerio, 
-    and sanitize it with sanitizeHtml */
+    try to manipulate the html with cheerio */
     throw new Error('Not implemented');
   }
 }

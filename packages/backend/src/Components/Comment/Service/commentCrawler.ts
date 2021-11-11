@@ -69,7 +69,8 @@ class CommentCrawler {
     const { postDoc /* deconstruct other params for the API here  */ } = params;
     const res = await getCommentApi(/* API params here */);
 
-    const { nextParams, infos, usersRaw } = this.transformData(res, params);
+    const { infos, usersRaw } = this.scrapeInfoUser(res, postDoc.get('id'));
+    const nextParams = this.transformNextParams(res, params);
 
     // save comment to database
     infos.forEach(async (comment: IComment) => {
@@ -102,20 +103,20 @@ class CommentCrawler {
     }
   };
 
-  /**
-   * take in the response from the API and transform it into the nextParams for the next request, and the infos of the comments,and the users
-   * @param res the axios api response object
-   * @param prevParams previous params
-   * @returns {nextParams, infos, usersRaw}
-   */
-  private transformData(
+  private scrapeInfoUser(
     res: any,
-    prevParams: CommentCrawlParams,
+    postId: string,
   ): {
-    nextParams: CommentCrawlParams | null;
     infos: IComment[];
     usersRaw: unknown[];
   } {
+    throw new NotImplementedError('Not implemented');
+  }
+
+  private transformNextParams(
+    res: any,
+    params: CommentCrawlParams,
+  ): CommentCrawlParams | null {
     throw new NotImplementedError('Not implemented');
   }
 }
