@@ -115,7 +115,7 @@ class PostCrawler implements IPostCrawler {
       }
 
       const videos = postDoc.get('videos');
-      if (videos.length > 0) {
+      if (videos?.length > 0) {
         videos.forEach((video: { name: string; originUrl: string }) => {
           this.videoService.downloadVideo(video.originUrl);
         });
