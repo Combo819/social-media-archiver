@@ -1,6 +1,6 @@
 import path from 'path';
 import pino from 'pino';
-import { logFolderPath } from '../Config';
+import { logFolderPath } from '../Config/paths';
 import pretty from 'pino-pretty';
 
 const logFilePath: string = path.resolve(
