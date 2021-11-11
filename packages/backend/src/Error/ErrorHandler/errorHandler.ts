@@ -19,7 +19,6 @@ class ErrorHandler {
   }
 
   async logError(err: Error | BaseError) {
-    console.error(err);
     logger.error(err);
   }
 }
