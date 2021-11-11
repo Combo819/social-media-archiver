@@ -39,27 +39,9 @@ class UserService implements IUserService {
   };
 
   transformUserResponse(userRaw: any): IUser {
-    const {
-      id,
-      screenName,
-      profileUrl,
-      gender,
-      followersCount,
-      followCount,
-      avatarHd,
-    } = userRaw;
-
-    const newUser: IUser = {
-      id: String(id),
-      username: screenName,
-      profileUrl,
-      gender,
-      followersCount: parseFollowersCount(followersCount),
-      followingCount: followCount,
-      image: { originUrl: avatarHd, name: getUrlLastSegment(avatarHd) },
-    };
-
-    return newUser;
+    throw new NotImplementedError(
+      `transformUserResponse in UserService is not implemented`,
+    );
   }
 
   async getUserByName(name: string): Promise<IUser[]> {
