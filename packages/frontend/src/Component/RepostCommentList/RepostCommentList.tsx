@@ -77,14 +77,7 @@ export default function RepostCommentList(props: React.Props<any>) {
         </Col>
       </Row>
       <Row justify="center" align="middle">
-        <Col
-          className="d-flex flex-row-reverse"
-          xs={24}
-          sm={20}
-          md={12}
-          lg={12}
-          xl={8}
-        >
+        <Col xs={24} sm={20} md={12} lg={12} xl={8}>
           <Pagination
             onChange={changePage}
             showSizeChanger
