@@ -14,10 +14,11 @@
     "prettier": "2.4.1"
   },
   "scripts": {
-    "start": "npx lerna run --scope @social-media-archiver/backend --scope @social-media-archiver/frontend start",
+    "start": "lerna run --parallel --scope @social-media-archiver/backend --scope @social-media-archiver/frontend start",
     "dist": "npx lerna bootstrap && npx lerna run --scope @social-media-archiver/backend dist",
     "commit": "git-cz",
-    "commitmsg": "validate-commit-msg"
+    "commitmsg": "validate-commit-msg",
+    "bootstrap": "lerna bootstrap"
   },
   "config": {
     "commitizen": {
