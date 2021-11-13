@@ -13,7 +13,7 @@
       "url": "http://localhost:3000/*"
     },
     {
-      "name": "Debug backend",
+      "name": "Debug Backend",
       "type": "node",
       "request": "launch",
       "args": ["${workspaceRoot}/packages/backend/src"],
