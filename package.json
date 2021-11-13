@@ -18,7 +18,10 @@
     "dist": "npx lerna bootstrap && npx lerna run --scope @social-media-archiver/backend dist",
     "commit": "git-cz",
     "commitmsg": "validate-commit-msg",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "frontend":"lerna run --parallel --scope @social-media-archiver/frontend start",
+    "backend":"lerna run --parallel --scope @social-media-archiver/backend start",
+    "documentation": "lerna run --parallel --scope @social-media-archiver/documentation start"
   },
   "config": {
     "commitizen": {
