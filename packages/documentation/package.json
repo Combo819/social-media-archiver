@@ -1,23 +1,19 @@
 {
   "name": "@social-media-archiver/documentation",
-  "version": "1.0.0",
-  "description": "The documentation for social-media-archiver",
+  "version": "0.0.1",
+  "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "next -p 8080",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "next build",
-    "export": "next export"
+  "authors": {
+    "name": "",
+    "email": ""
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "next": "^12.0.3",
-    "nextra": "^1.1.0",
-    "nextra-theme-docs": "^1.2.6",
-    "prism-react-renderer": "^1.2.1",
-    "prismjs": "^1.25.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+  "repository": "/@social-media-archiver/documentation",
+  "scripts": {
+    "start": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
   }
 }
