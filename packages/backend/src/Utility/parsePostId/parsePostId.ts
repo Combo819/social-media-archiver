@@ -10,7 +10,5 @@ import { BadRequestError, NotImplementedError } from '../../Error/ErrorClass';
  * @returns the post id, if it's not a valid post url, return empty string ""
  */
 export async function parsePostId(urlStr: string): Promise<string> {
-  //if the string contains only digits, then it's a post id
-  /* take in the urlStr, return the  */
   throw new NotImplementedError('parsePostId not implemented yet');
 }
