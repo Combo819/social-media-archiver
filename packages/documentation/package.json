@@ -1,7 +1,7 @@
 {
   "name": "@social-media-archiver/documentation",
   "version": "0.0.1",
-  "description": "",
+  "description": "Social Media Archiver is a Node.js template to be implemented to archive post from any social media.",
   "main": "index.js",
   "authors": {
     "name": "",
