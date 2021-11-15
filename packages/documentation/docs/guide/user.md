@@ -14,7 +14,7 @@ in `packages/backend/src/Components/User/Service/userService.ts`
 
 The function wil take in the raw user object. You should transform the raw user object into a `IUser` object. see `packages/backend/src/Components/User/Types/userTypes.ts`
 
-## (Optional) Request
+## (Optional) API
 
 In most cases, you will not need to make a API request to get the user information, since the user information is usually attached to the other response.
 in `packages/backend/src/Components/User/Service/userApi.ts`,
@@ -31,7 +31,7 @@ If not, transform it to the userRaw object in then and return it.
 ```typescript
 function getUserInfoByIdApi(userId: string): Promise<unknown> {
   return crawlerAxios({
-    url: `/user/${id}`,
+    url: `/api/user/${id}`,
   }).then((res) => {
     const userRaw = res.data; // depends on the response format
     return userRaw;

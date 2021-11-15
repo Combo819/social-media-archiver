@@ -5,7 +5,7 @@ import { NotImplementedError } from '../../../Error/ErrorClass';
 /**
  * get a batch of comments
  */
-function getCommentApi(): AxiosPromise {
+function getCommentApi(/* params here */): AxiosPromise {
   /* axios config here */
   throw new NotImplementedError('getCommentApi is not implemented');
 }

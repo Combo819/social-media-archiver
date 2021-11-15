@@ -28,7 +28,7 @@ export async function parsePostId(urlStr: string): Promise<string> {
 
 As the comment said, you should extract the post id from the url. Since most of the id is in the last part of the url, we can use the `getUrlLastSegment` to extract the id.
 
-## Request
+## API
 
 In this step, you need to request the platform and get the response. You should look up the platform's developer documentation to know what is the exact url to request a post with id(not necessary the url submitted by user).  
 Or more straight forward, you can open the browser console, select the network panel, and observe which API call brings back the post information.
