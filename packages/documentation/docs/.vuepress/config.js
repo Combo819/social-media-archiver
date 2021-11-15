@@ -70,13 +70,7 @@ module.exports = {
           },
         ],
         sidebar: {
-          '/guide/': [
-            {
-              title: 'Guide',
-              collapsable: false,
-              children: ['', 'get-start', "post"],
-            },
-          ],
+          '/guide/': getGuideSidebar('Guide', 'Component'),
         },
       },
       '/zh/': {
@@ -113,7 +107,7 @@ module.exports = {
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
    */
   plugins: ['@vuepress/plugin-back-to-top', '@vuepress/plugin-medium-zoom'],
-  locales: {
+    locales: {
     // The key is the path for the locale to be nested under.
     // As a special case, the default locale can use '/' as its path.
     '/': {
@@ -130,3 +124,18 @@ module.exports = {
     },
   },
 };
+
+function getGuideSidebar(groupA, groupB) {
+  return [
+    {
+      title: groupA,
+      collapsable: true,
+      children: ['', 'get-start','platform'],
+    },
+    {
+      title: groupB,
+      collapsable: true,
+      children: ['post','user'],
+    },
+  ];
+}

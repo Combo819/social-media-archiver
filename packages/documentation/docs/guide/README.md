@@ -11,8 +11,21 @@ For example:
 + specific platform open-source crawler: most of them are research or business oriented, without a UI to recover the crawled posts for individual users.
 + taking screenshot: hard to organize. When time goes by, the screenshots will lost in among tons of other pictures in your album. The photos from the post aren't original.The text can't be selected.   
   
-Finally, to archive the post I like in a social media platform, I use Node.js to build a archive tool. I did much refactor to the code, making it extendable.   
-Now, I remove the platform related code, making it a template. The template can be easily implemented to crawler or archive post from any social platform in couple of hours.
+Finally, to archive the post I like in a social media platform, I use Node.js to build a archive tool.
+## Structure
+Most of social media post has similar structure, as the following image shows:
+1. author
+2. content
+3. embed images in content
+4. images or videos
+5. upvote
+6. comment
+7. sub comment
+8. repost
+9. repost comment  
+    
+The posts don't necessarily have all these features, but most of the posts have some of them, especially the author, content, and comment.  
+Because of the similarity in structure, I notice that I can remove the platform specific code in my previous project, making it reusable for all platforms. You only need to add platform's API and the corresponding data transformation method, which is just half-day work.
 
 ## How it work?
 ![An image](./simple-workflow.svg)

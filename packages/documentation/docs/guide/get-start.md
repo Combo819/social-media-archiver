@@ -1,6 +1,10 @@
 
 # Get Started
 
+## Background knowledge
+- Typescript
+- Node.js
+
 ## Prerequisites
 
 1. Node.js
@@ -46,6 +50,11 @@ Then the backend is running.
 To debug the backend, stop the running backend first, and open the debug panel in VS Code,
 select the `Debug Backend` in the dropdown, and click the `Start Debugging` button.
 
-![](./simple-workflow.svg)
+![debug](./debug.png)
 
 Then you can use the debug utilities like breakpoints and the debug message is displayed in the Debug Console right next to Terminal.
+
+## Log
+In development mode, the log will be displayed in the terminal or the debug console(for VS Code debug mode). There is also a log file `packages/backend/log/social-media-archiver.log`  
+In production mode, the log file is in `log/social-media-archiver.log`.
+You can use [pino-pretty](https://github.com/pinojs/pino-pretty) to pretty print the log file.
