@@ -4,13 +4,13 @@ import { IBaseDAL, IBaseService } from '../../Base/baseTypes';
  * Interface to model the User Schema for TypeScript.
  */
 type IUser = {
-  id: string;
-  username: string;
-  profileUrl?: string;
-  gender: string;
+  id: string; // The user's unique ID.
+  username: string; // The user's username.
+  profileUrl?: string; // The user's home URL.
+  gender: string; // same as the platform
   followersCount: number;
   followingCount: number;
-  image: { name: string; originUrl: string }; // profile image filename,
+  image: { name: string; originUrl: string }; // for the user's profile image
 };
 
 interface IUserService extends IBaseService<IUser, UserDocument, any, any> {
