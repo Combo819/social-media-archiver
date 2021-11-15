@@ -26,7 +26,6 @@ import { NotImplementedError } from '../../../Error/ErrorClass';
 class CommentCrawler {
   private postService!: IPostService;
   private commentService!: ICommentService;
-  private accountService: IAccountService;
   private userService: IUserService;
   private subCommentService: ISubCommentService;
   private imageService: ImageServiceInterface;
@@ -40,7 +39,6 @@ class CommentCrawler {
     @inject(IMAGE_IOC_SYMBOLS.ImageServiceInterface)
     imageService: ImageServiceInterface,
   ) {
-    this.accountService = accountService;
     this.userService = userService;
     this.subCommentService = subCommentService;
     this.imageService = imageService;
@@ -55,21 +53,21 @@ class CommentCrawler {
     );
   }
 
-  startCrawling = (postDoc: PostDocument) => {
+  startCrawling = (postId: string) => {
     asyncPriorityQueuePush(
       this.crawl,
       {
-        postDoc /* other initial params here */,
+        postId /* other initial params here */,
       },
       Q_PRIORITY.CRAWLER_COMMENT,
     );
   };
 
   private crawl = async (params: CommentCrawlParams) => {
-    const { postDoc /* deconstruct other params for the API here  */ } = params;
+    const { postId /* deconstruct other params for the API here  */ } = params;
     const res = await getCommentApi(/* API params here */);
 
-    const { infos, usersRaw } = this.scrapeInfoUser(res, postDoc.get('id'));
+    const { infos, usersRaw } = this.scrapeData(res, postId);
     const nextParams = this.transformNextParams(res, params);
 
     // save comment to database
@@ -91,7 +89,7 @@ class CommentCrawler {
       (commentInfo: IComment) => commentInfo.id,
     );
 
-    this.postService.addComments(commentIds, postDoc);
+    this.postService.addComments(commentIds, postId);
 
     //if there is next request to go
     if (nextParams) {
@@ -103,7 +101,7 @@ class CommentCrawler {
     }
   };
 
-  private scrapeInfoUser(
+  private scrapeData(
     res: any,
     postId: string,
   ): {

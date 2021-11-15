@@ -50,7 +50,7 @@ interface IPostService
   startCrawling(id: string): Promise<PostDocument | null>;
   getPostById(id: string): Promise<PostDocument | null>;
   populatePost(postDoc: PostDocument): Promise<IPostPopulated>;
-  addComments: (commentIds: string[], postDoc: PostDocument) => Promise<void>;
+  addComments: (commentIds: string[], postId: string) => Promise<void>;
   addRepostComments: (
     repostCommentIds: string[],
     postDoc: PostDocument,

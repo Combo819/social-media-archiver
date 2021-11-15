@@ -31,8 +31,9 @@ class PostService implements IPostService {
   }
 
   async startCrawling(postId: string): Promise<PostDocument | null> {
-    const postDoc: PostDocument | null =
-      await this.postCrawler.startCrawling(postId);
+    const postDoc: PostDocument | null = await this.postCrawler.startCrawling(
+      postId,
+    );
     return postDoc;
   }
 
@@ -70,8 +71,11 @@ class PostService implements IPostService {
     return populatedPostDoc;
   }
 
-  async addComments(commentIds: string[], postDoc: PostDocument) {
-    await this.postDAL.addComments(commentIds, postDoc);
+  async addComments(commentIds: string[], postId: string) {
+    const postDoc = await this.postDAL.findOneById(postId);
+    if (postDoc) {
+      await this.postDAL.addComments(commentIds, postDoc);
+    }
   }
 
   async addRepostComments(repostCommentIds: string[], postDoc: PostDocument) {

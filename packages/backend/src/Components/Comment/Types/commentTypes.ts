@@ -49,7 +49,7 @@ interface ICommentService
 }
 
 type CommentCrawlParams = {
-  postDoc: PostDocument;
+  postId: string;
   /* possible other properties */
 };
 
