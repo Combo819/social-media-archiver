@@ -39,12 +39,11 @@ interface ICommentService
   extends IBaseService<
     IComment,
     CommentDocument,
-    ICommentPopulated,
-    PostDocument
+    ICommentPopulated
   > {
   addSubComments: (
     subCommentIds: string[],
-    commentDoc: CommentDocument,
+    commentId: string,
   ) => Promise<void>;
 }
 
@@ -54,7 +53,7 @@ type CommentCrawlParams = {
 };
 
 interface ICommentCrawler {
-  startCrawling: (postDoc: PostDocument) => void;
+  startCrawling: (postId: string) => void;
 }
 
 export {

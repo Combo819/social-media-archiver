@@ -43,8 +43,8 @@ class SubCommentService implements ISubCommentService {
     return subCommentDoc;
   };
 
-  startCrawling(commentDoc: CommentDocument) {
-    this.subCommentCrawler.startCrawling(commentDoc);
+  startCrawling(commentId: string) {
+    this.subCommentCrawler.startCrawling(commentId);
   }
 
   private async populate(

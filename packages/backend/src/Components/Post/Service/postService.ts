@@ -78,8 +78,11 @@ class PostService implements IPostService {
     }
   }
 
-  async addRepostComments(repostCommentIds: string[], postDoc: PostDocument) {
-    await this.postDAL.addRepostComments(repostCommentIds, postDoc);
+  async addRepostComments(repostCommentIds: string[], postId: string) {
+    const postDoc = await this.postDAL.findOneById(postId);
+    if (postDoc) {
+      await this.postDAL.addRepostComments(repostCommentIds, postDoc);
+    }
   }
 
   async deleteDoc(postId: string) {

@@ -42,20 +42,20 @@ class SubCommentCrawler implements ISubCommentCrawler {
     );
   }
 
-  startCrawling = (commentDoc: CommentDocument) => {
+  startCrawling = (commentId: string) => {
     asyncPriorityQueuePush(
       this.crawl,
-      { commentDoc /* other initial params here */ },
+      { commentId /* other initial params here */ },
       Q_PRIORITY.CRAWLER_SUB_COMMENT,
     );
   };
 
   private crawl = async (params: SubCommentCrawlerParams) => {
-    const { commentDoc /* deconstruct other params for the API here  */ } =
+    const { commentId /* deconstruct other params for the API here  */ } =
       params;
     const res = await getSubCommentApi(/* API params here */);
 
-    const { infos, usersRaw } = this.scrapeInfoUser(res, commentDoc.get('id'));
+    const { infos, usersRaw } = this.scrapeInfoUser(res, commentId);
     const nextParams = this.transformNextParams(res, params);
     await map(infos, asyncify(this.subCommentService.save));
     await map(
@@ -69,7 +69,7 @@ class SubCommentCrawler implements ISubCommentCrawler {
       (subCommentInfo: ISubComment) => subCommentInfo.id,
     );
 
-    this.commentService.addSubComments(newSubComments, commentDoc);
+    this.commentService.addSubComments(newSubComments, commentId);
 
     if (nextParams) {
       asyncPriorityQueuePush(

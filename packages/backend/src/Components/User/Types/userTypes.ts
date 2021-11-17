@@ -13,7 +13,7 @@ type IUser = {
   image: { name: string; originUrl: string }; // for the user's profile image
 };
 
-interface IUserService extends IBaseService<IUser, UserDocument, any, any> {
+interface IUserService extends IBaseService<IUser, UserDocument, any> {
   getUserByName: (name: string) => Promise<IUser[]>;
   fetchUser: (userId: string) => Promise<UserDocument | null>;
   getUserIdByName: (username: string) => Promise<string | ''>;

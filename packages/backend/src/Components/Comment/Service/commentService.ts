@@ -50,8 +50,8 @@ class CommentService implements ICommentService {
    * starter function that pushes the first comment requesting to the worker of queue
    * @param postId
    */
-  startCrawling(postDoc: PostDocument) {
-    this.commentCrawler.startCrawling(postDoc);
+  startCrawling(postId: string) {
+    this.commentCrawler.startCrawling(postId);
   }
 
   //need second param "callback"?
@@ -63,8 +63,11 @@ class CommentService implements ICommentService {
     return commentDoc;
   };
 
-  async addSubComments(subCommentIds: string[], commentDoc: CommentDocument) {
-    await this.commentDAL.addSubComments(subCommentIds, commentDoc);
+  async addSubComments(subCommentIds: string[], commentId: string) {
+    const commentDoc = await this.commentDAL.findOneById(commentId);
+    if (commentDoc) {
+      await this.commentDAL.addSubComments(subCommentIds, commentDoc);
+    }
   }
 
   private async populate(

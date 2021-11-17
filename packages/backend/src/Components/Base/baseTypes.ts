@@ -11,8 +11,8 @@ interface IBaseDAL<Info, Document> {
   getVersion(): number;
 }
 
-interface IBaseService<Info, Document, InfoPopulated, ParentDoc> {
-  startCrawling(parentDoc: ParentDoc): void;
+interface IBaseService<Info, Document, InfoPopulated> {
+  startCrawling(id: string): void;
   save(info: Info): Promise<Document>;
   getOneByIdPopulated(id: string): Promise<InfoPopulated | null>;
   queryPopulated(queryObj: MangoQuery): Promise<InfoPopulated[]>;
@@ -27,9 +27,9 @@ interface IBaseService<Info, Document, InfoPopulated, ParentDoc> {
   getVersion(): number;
 }
 
-interface IBaseCrawler<ParentDoc> {
+interface IBaseCrawler {
   lazyInject: () => void;
-  startCrawling: (parentDoc: ParentDoc) => void;
+  startCrawling: (id: string) => void;
 }
 
 export { IBaseDAL, IBaseService, IBaseCrawler };

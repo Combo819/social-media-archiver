@@ -38,18 +38,18 @@ class RepostCommentCrawler implements IRepostCommentCrawler {
     );
   }
 
-  startCrawling = (postDoc: PostDocument) => {
+  startCrawling = (postId: string) => {
     asyncPriorityQueuePush(
       this.crawl,
-      { postDoc /* other initial params here */ },
+      { postId /* other initial params here */ },
       Q_PRIORITY.CRAWLER_REPOST_COMMENT,
     );
   };
 
   private crawl = async (params: RepostCommentCrawlerParams) => {
-    const { postDoc /* deconstruct other params for the API here  */ } = params;
+    const { postId /* deconstruct other params for the API here  */ } = params;
     const res = await getRepostCommentApi(/* API params here */);
-    const { usersRaw, infos } = this.scrapeInfoUser(res, postDoc.get('id'));
+    const { usersRaw, infos } = this.scrapeInfoUser(res, postId);
     const nextParams = this.transformNextParams(res, params);
     map(infos, asyncify(this.repostCommentService.save));
     map(
@@ -60,7 +60,7 @@ class RepostCommentCrawler implements IRepostCommentCrawler {
     );
     this.postService.addRepostComments(
       infos.map((repostComments) => repostComments.id),
-      postDoc,
+      postId,
     );
     if (nextParams) {
       asyncPriorityQueuePush(

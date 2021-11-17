@@ -46,19 +46,19 @@ type CrawlerPostTask = {
 };
 
 interface IPostService
-  extends IBaseService<IPost, PostDocument, IPostPopulated, any> {
+  extends IBaseService<IPost, PostDocument, IPostPopulated> {
   startCrawling(id: string): Promise<PostDocument | null>;
   getPostById(id: string): Promise<PostDocument | null>;
   populatePost(postDoc: PostDocument): Promise<IPostPopulated>;
   addComments: (commentIds: string[], postId: string) => Promise<void>;
   addRepostComments: (
     repostCommentIds: string[],
-    postDoc: PostDocument,
+    postId: string,
   ) => Promise<void>;
   deleteDoc(id: string): Promise<boolean>;
 }
 
-interface IPostCrawler extends IBaseCrawler<any> {
+interface IPostCrawler extends IBaseCrawler{
   startCrawling: (postId: string) => Promise<PostDocument | null>;
 }
 

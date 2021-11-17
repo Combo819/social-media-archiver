@@ -28,17 +28,16 @@ interface ISubCommentService
   extends IBaseService<
     ISubComment,
     SubCommentDocument,
-    ISubCommentPopulated,
-    CommentDocument
+    ISubCommentPopulated
   > {}
 
-interface ISubCommentCrawler extends IBaseCrawler<CommentDocument> {}
+interface ISubCommentCrawler extends IBaseCrawler {}
 
 /**
  * the params that the func needs in async queue worker
  */
 type SubCommentCrawlerParams = {
-  commentDoc: CommentDocument;
+  commentId: string;
   /* possible other properties */
 };
 

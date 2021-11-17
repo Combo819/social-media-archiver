@@ -121,8 +121,8 @@ class PostCrawler implements IPostCrawler {
         });
       }
 
-      this.commentService.startCrawling(postDoc);
-      this.repostCommentService.startCrawling(postDoc);
+      this.commentService.startCrawling(postDoc.get('id'));
+      this.repostCommentService.startCrawling(postDoc.get('id'));
 
       if (repostingId) {
         this.startCrawling(repostingId);

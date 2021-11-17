@@ -25,14 +25,13 @@ interface IRepostCommentService
   extends IBaseService<
     IRepostComment,
     RepostCommentDocument,
-    IRepostCommentPopulated,
-    PostDocument
+    IRepostCommentPopulated
   > {}
 
-interface IRepostCommentCrawler extends IBaseCrawler<PostDocument> {}
+interface IRepostCommentCrawler extends IBaseCrawler {}
 
 type RepostCommentCrawlerParams = {
-  postDoc: PostDocument;
+  postId: string;
   /* possible other properties */
 };
 

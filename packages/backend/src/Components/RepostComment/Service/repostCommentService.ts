@@ -41,8 +41,8 @@ class RepostCommentService implements IRepostCommentService {
     return repostCommentDoc;
   };
 
-  startCrawling(postDoc: PostDocument) {
-    this.repostCommentCrawler.startCrawling(postDoc);
+  startCrawling(postId: string) {
+    this.repostCommentCrawler.startCrawling(postId);
   }
 
   private async populate(
