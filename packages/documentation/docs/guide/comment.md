@@ -58,8 +58,36 @@ in `packages/backend/src/Components/Comment/Service/commentCrawler.ts`
 `crawl` is the function that crawls the comments. It takes a `params`, which is from the previous `crawl` call.
 
 ![](./comment-crawler.drawio.svg)
+You should first specify the initial parameters in `startCrawling`, to fetch the first batch of comments.
 
-You should deconstruct the parameters from `params` first, and pass the parameters to the `getCommentApi` function.
+```typescript
+startCrawling = (postId: string) => {
+  asyncPriorityQueuePush(
+    this.crawl,
+    {
+      postId /* other initial params here */,
+    },
+    Q_PRIORITY.CRAWLER_COMMENT,
+  );
+};
+```
+
+For example:
+```typescript
+startCrawling = (postId: string) => {
+  asyncPriorityQueuePush(
+    this.crawl,
+    {
+      postId,
+      page: 0,
+      pageSize: 10,
+    },
+    Q_PRIORITY.CRAWLER_COMMENT,
+  );
+};
+```
+
+You should deconstruct the parameters from `params` then, and pass the parameters to the `getCommentApi` function.
 
 ```typescript
   private crawl = async (params: CommentCrawlParams) => {
@@ -136,7 +164,8 @@ private transformNextParams(
 
 ## Transform
 
-You should transform the data from the API call response `res` to the `IComment` type so that the comments can be saved to the database, and also return their corresponding user objects `usersRaw`.
+You should transform the data from the API call response `res` to the `IComment` type so that the comments can be saved to the database.   
+This method should also return their corresponding user objects `usersRaw`.
 
 ```typescript
   private scrapeData(
@@ -161,21 +190,21 @@ example:
   usersRaw: unknown[];
 } {
   const { data } = res;
-  const infos: IComment[] = data.map((comment: any) => {
+  const infos: IComment[] = data.map((commentRaw: any) => {
     return {
-      id: comment.id,
-      floorNumber: comment.floorNumber, // or -1 if not exist
-      content: comment.content,
-      subCommentsCount: comment.subCommentsCount,
-      user: comment.user, // user id
-      upvotesCount: comment.upvotesCount,
+      id: commentRaw.id,
+      floorNumber: commentRaw.floorNumber, // or -1 if not exist
+      content: commentRaw.content,
+      subCommentsCount: commentRaw.subCommentsCount,
+      user: commentRaw.user.id, // user id
+      upvotesCount: commentRaw.upvotesCount,
       createTime: number,
-      subComments: comment.subComments, // sub comment ids
+      subComments: commentRaw.subComments, // sub comment ids
       postId,
-      saveTime: dayjs().unix(),
+      saveTime: dayjs().valueOf(),
     };
   });
-  const usersRaw: unknown[] = data.map((comment: any) => comment.user);
+  const usersRaw: unknown[] = data.map((commentRaw: any) => commentRaw.user);
   return {
     infos,
     usersRaw,
