@@ -55,7 +55,7 @@ class SubCommentCrawler implements ISubCommentCrawler {
       params;
     const res = await getSubCommentApi(/* API params here */);
 
-    const { infos, usersRaw } = this.scrapeInfoUser(res, commentId);
+    const { infos, usersRaw } = this.scrapeData(res, commentId);
     const nextParams = this.transformNextParams(res, params);
     await map(infos, asyncify(this.subCommentService.save));
     await map(
@@ -80,7 +80,7 @@ class SubCommentCrawler implements ISubCommentCrawler {
     }
   };
 
-  private scrapeInfoUser(
+  private scrapeData(
     res: any,
     commentId: string,
   ): {
