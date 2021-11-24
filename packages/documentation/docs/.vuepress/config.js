@@ -135,7 +135,7 @@ function getGuideSidebar(groupA, groupB) {
     {
       title: groupB,
       collapsable: true,
-      children: ['post','user','comment','repost-comment'],
+      children: ['post','user','comment','repost-comment','subcomment'],
     },
   ];
 }

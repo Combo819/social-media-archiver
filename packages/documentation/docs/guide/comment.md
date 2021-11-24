@@ -198,7 +198,7 @@ example:
       subCommentsCount: commentRaw.subCommentsCount,
       user: commentRaw.user.id, // user id
       upvotesCount: commentRaw.upvotesCount,
-      createTime: number,
+      createTime: dayjs(commentRaw.createTime).valueOf(),
       subComments: commentRaw.subComments, // sub comment ids
       postId,
       saveTime: dayjs().valueOf(),
