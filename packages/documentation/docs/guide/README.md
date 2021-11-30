@@ -7,11 +7,11 @@ After it's implemented, it can archive a post with the images and videos, and th
 ## Inspiration
 When I was using the social media, sometimes the post I like was deleted by the author or by the social media platform. I was eager to have a tool to archive the post with its comments and media. After trying couple of approaches, none of them are ideal.   
 For example:
-+ web.archive.org: hard to archive the comments that are loaded dynamically.
++ archive.me: hard to archive the comments that are loaded dynamically, neither the video files.
 + specific platform open-source crawler: most of them are research or business oriented, without a UI to recover the crawled posts for individual users.
 + taking screenshot: hard to organize. When time goes by, the screenshots will lost in among tons of other pictures in your album. The photos from the post aren't original.The text can't be selected.   
   
-Finally, to archive the post I like in a social media platform, I use Node.js to build a archive tool.
+Finally, to archive the post I like in a social media platform, I decide to use Node.js to build a archive tool.
 ## Structure
 Most of social media post has similar structure, as the following image shows:
 1. author

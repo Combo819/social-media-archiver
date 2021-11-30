@@ -70,7 +70,7 @@ module.exports = {
           },
         ],
         sidebar: {
-          '/guide/': getGuideSidebar('Guide', 'Component'),
+          '/guide/': getGuideSidebar('Guide', 'Component', 'Release'),
         },
       },
       '/zh/': {
@@ -125,7 +125,7 @@ module.exports = {
   },
 };
 
-function getGuideSidebar(groupA, groupB) {
+function getGuideSidebar(groupA, groupB, groupC) {
   return [
     {
       title: groupA,
@@ -137,5 +137,10 @@ function getGuideSidebar(groupA, groupB) {
       collapsable: true,
       children: ['post','user','comment','repost-comment','subcomment'],
     },
+    {
+      title:groupC,
+      collapsable: true,
+      children: ['build','publish'],
+    }
   ];
 }

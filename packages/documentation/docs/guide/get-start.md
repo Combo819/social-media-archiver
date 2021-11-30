@@ -19,8 +19,14 @@
 git clone https://github.com/Combo819/social-media-archiver.git
 ```
 
-2. install dependencies
-
+2. install dependencies  
+For `npm<=6`:
+```shell
+cd social-media-archiver
+npm ci 
+lerna bootstrap
+```
+For `npm>=7`:
 ```shell
 cd social-media-archiver
 npm ci --legacy-peer-deps
