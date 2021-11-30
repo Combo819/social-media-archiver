@@ -95,4 +95,4 @@ To see the result:
 curl 'http://localhost:5000/api/post' 
 ```
 Now It should successfully return a post. The author's name will show `undefined` since we haven't save the author information yet.  
-You are free to go to the next section now.
+feel free to go to the next section.

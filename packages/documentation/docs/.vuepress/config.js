@@ -70,7 +70,12 @@ module.exports = {
           },
         ],
         sidebar: {
-          '/guide/': getGuideSidebar('Guide', 'Component', 'Release'),
+          '/guide/': getGuideSidebar(
+            'Guide',
+            'Component',
+            'Release',
+            'Disclaimer',
+          ),
         },
       },
       '/zh/': {
@@ -107,7 +112,7 @@ module.exports = {
    * Apply plugins，ref：https://v1.vuepress.vuejs.org/zh/plugin/
    */
   plugins: ['@vuepress/plugin-back-to-top', '@vuepress/plugin-medium-zoom'],
-    locales: {
+  locales: {
     // The key is the path for the locale to be nested under.
     // As a special case, the default locale can use '/' as its path.
     '/': {
@@ -125,22 +130,35 @@ module.exports = {
   },
 };
 
-function getGuideSidebar(groupA, groupB, groupC) {
+function getGuideSidebar(groupA, groupB, groupC, groupD) {
   return [
     {
       title: groupA,
       collapsable: true,
-      children: ['', 'get-start','platform'],
+      children: ['', 'get-start', 'platform'],
     },
     {
       title: groupB,
       collapsable: true,
-      children: ['post','user','comment','repost-comment','subcomment'],
+      children: [
+        'post',
+        'user',
+        'comment',
+        'repost-comment',
+        'subcomment',
+        'account',
+        "video",
+      ],
     },
     {
-      title:groupC,
+      title: groupC,
       collapsable: true,
-      children: ['build','publish'],
-    }
+      children: ['build', 'publish'],
+    },
+    {
+      title: groupD,
+      collapsable: true,
+      children: ['disclaimer'],
+    },
   ];
 }
