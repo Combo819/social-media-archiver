@@ -115,7 +115,7 @@ type RepostCommentCrawlerParams = {
   };
 ```
 
-## Next Params
+## 下一组评论
 
 在`packages/backend/src/Components/RepostComment/Service/repostCommentCrawler.ts`中，`transformNextParams`是转换下一组参数的函数。
 
