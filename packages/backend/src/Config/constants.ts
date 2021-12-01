@@ -1,6 +1,7 @@
 const BASE_URL: string = '';
 
 const Q_CONCURRENCY: number = 1;
+const MAX_ITEM_WINDOW: number = 6;
 
 //small number has higher priority
 const Q_PRIORITY = {
@@ -29,4 +30,5 @@ export {
   MAX_MONITOR_COLLECTION,
   PORT,
   MONITOR_INTERVAL,
+  MAX_ITEM_WINDOW,
 };

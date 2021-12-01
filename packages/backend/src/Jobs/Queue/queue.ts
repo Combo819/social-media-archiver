@@ -1,5 +1,5 @@
 import async, { AsyncPriorityQueue } from 'async';
-import { Q_CONCURRENCY } from '../../Config';
+import { MAX_ITEM_WINDOW, Q_CONCURRENCY } from '../../Config';
 import { TimeWindow } from './timeWindow';
 const { priorityQueue } = async;
 
@@ -28,7 +28,7 @@ const pq: AsyncPriorityQueue<QueueTask<unknown, unknown>> = priorityQueue(
   Q_CONCURRENCY,
 );
 
-const timeWindow = new TimeWindow(pq, 30, 6);
+const timeWindow = new TimeWindow(pq, 30, MAX_ITEM_WINDOW);
 
 /**
  * push a task into the async priority queue
