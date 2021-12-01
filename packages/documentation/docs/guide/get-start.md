@@ -1,7 +1,7 @@
-
 # Get Started
 
 ## Background knowledge
+
 - Typescript
 - Node.js
 
@@ -20,20 +20,25 @@ git clone https://github.com/Combo819/social-media-archiver.git
 ```
 
 2. install dependencies  
-For `npm<=6`:
+   For `npm<=6`:
+
 ```shell
 cd social-media-archiver
-npm ci 
+npm ci
 lerna bootstrap
 ```
+
 For `npm>=7`:
+
 ```shell
 cd social-media-archiver
 npm ci --legacy-peer-deps
 ```
 
 ## Config
+
 In `packages/backend/src/Config/constants.ts`:
+
 ```typescript
 const BASE_URL: string = 'PLATFORM_DOMAIN';
 const Q_CONCURRENCY: number = 1; // number of concurrent API requests to the platform
@@ -69,6 +74,7 @@ select the `Debug Backend` in the dropdown, and click the `Start Debugging` butt
 Then you can use the debug utilities like breakpoints and the debug message is displayed in the Debug Console right next to Terminal.
 
 ## Log
+
 In development mode, the log will be displayed in the terminal or the debug console(for VS Code debug mode). There is also a log file `packages/backend/log/social-media-archiver.log`  
 In production mode, the log file is in `log/social-media-archiver.log`.
 You can use [pino-pretty](https://github.com/pinojs/pino-pretty) to pretty print the log file.
