@@ -26,9 +26,17 @@ class AccountService implements IAccountService {
   async init() {
     const cookie: string = await this.readCookieLocal();
     const isCookieValid: boolean = await this.validateCookie(cookie);
+    if (!cookie) {
+      this.mode = 'non-cookie';
+      this.cookie = '';
+      const nonCookieModeLogMessage: string = `Starting in non-cookie mode`;
+      logger.info(nonCookieModeLogMessage);
+      return;
+    }
+    this.mode = 'cookie';
+    this.cookie = cookie;
+    logger.info(`Starting in cookie mode`);
     if (isCookieValid) {
-      this.mode = 'cookie';
-      this.cookie = cookie;
       const userInfo: IUser = await this.getUserByCookie(
         this.cookie,
         this.userService,
@@ -37,17 +45,12 @@ class AccountService implements IAccountService {
       logger.info(
         `use account ${this.user.username}, id ${this.user.id} as the crawling account`,
       );
-    } else {
-      this.mode = 'non-cookie';
-      this.cookie = '';
-      const nonCookieModeLogMessage: string = `Starting as non-cookie mode`;
-      logger.info(nonCookieModeLogMessage);
     }
   }
 
   private async readCookieLocal(): Promise<string> {
     try {
-      const json:any = await readJson(credentialJsonPath);
+      const json: any = await readJson(credentialJsonPath);
       return json.cookie as string;
     } catch (error) {
       return '';
@@ -58,7 +61,7 @@ class AccountService implements IAccountService {
     if (!cookie) {
       return false;
     } else {
-      const { login, uid } = await (await getLoginStatusApi(cookie)).data?.data;
+      const { login, uid } = await getLoginStatusApi(cookie).data;
       if (login && uid) {
         return true;
       }
@@ -94,7 +97,7 @@ class AccountService implements IAccountService {
   }
 
   async setCookie(cookie: string) {
-    const jsonObj:any = await readJson(credentialJsonPath);
+    const jsonObj: any = await readJson(credentialJsonPath);
     jsonObj['cookie'] = cookie;
     const hasWrite: boolean = await writeJson(credentialJsonPath, jsonObj);
     await this.init();

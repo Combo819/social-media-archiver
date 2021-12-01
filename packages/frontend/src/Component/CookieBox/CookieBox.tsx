@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Input, message, Space } from 'antd';
+import { Button, Form, Input, message, Space, Modal } from 'antd';
 import styles from './CookieBox.module.scss';
 import { EditOutlined } from '@ant-design/icons';
 import { IUser } from '../../types';
@@ -14,6 +14,8 @@ import { accountCreators } from '../../Store';
 type CookieBoxProps = {
   account: IUser | null;
 };
+
+const { confirm } = Modal;
 function CookieBox(props: CookieBoxProps) {
   const { account } = props;
 
@@ -27,55 +29,68 @@ function CookieBox(props: CookieBoxProps) {
     getCookieApi()
       .then((res) => {
         const cookie: string = res.data.result;
-        setCookie(cookie);
-        form.setFieldsValue({ cookie });
+        if (!cookie) {
+          setCookie(`Cookie doesn't exist`); 
+        } else {
+          setCookie(cookie);
+          form.setFieldsValue({ cookie });
+        }
       })
       .catch((err) => {
-        message.error('Failed to get cookie');
+        form.setFieldsValue({ cookie: `Cookie doesn't exist` });
+        setCookie(`Cookie doesn't exist`);
       })
       .finally(() => {});
   };
 
   useEffect(() => {
-    if (account) {
-      init();
-    } else {
-      form.setFieldsValue({ cookie: `Cookie doesn't exist` });
-      setCookie(`Cookie doesn't exist`);
-    }
+    init();
   }, [account?.id]);
 
   const onSaveCookie = async () => {
-    setLoading(true);
-    const values = form.getFieldsValue();
-    let isCookieValid: boolean = false;
     try {
-      const res = await validateCookieApi(values['cookie']);
-      isCookieValid = res.data.result;
-      if (!isCookieValid) {
-        message.error('the cookie is invalid');
+      setLoading(true);
+      const values = form.getFieldsValue();
+      const cookie = values['cookie'];
+      if (!cookie || cookie === "Cookie doesn't exist") {
+        message.error('Cookie is empty');
         setLoading(false);
         return;
       }
-    } catch (error) {
-      setLoading(false);
-      message.error('failed to validate cookie');
-      return;
-    }
-
-    if (isCookieValid) {
-      try {
-        await setCookieApi(values['cookie']);
-        setIsEdit(false);
-        message.success('New Cookie Set');
+      const isCookieValid: boolean = await validateCookie(cookie);
+      if (isCookieValid) {
+        await submitCookie(cookie);
         const account = await (await getAccountProfileApi()).data.result;
         dispatch(accountCreators.setAccount(account));
-      } catch (error) {
-        message.error('failed to set cookie');
-      } finally {
         setLoading(false);
+      } else {
+        confirm({
+          title: 'Cookie is invalid',
+          content: 'Set the cookie anyway?',
+          async onOk() {
+            await submitCookie(cookie);
+            setLoading(false);
+          },
+          onCancel() {
+            setLoading(false);
+          },
+        });
       }
+    } catch (err) {
+      message.error('Failed to save cookie');
     }
+  };
+
+  const validateCookie = async (cookie: string) => {
+    const res = await validateCookieApi(cookie);
+    const isCookieValid: boolean = res.data.result;
+    return isCookieValid;
+  };
+
+  const submitCookie = async (cookie: string) => {
+    await setCookieApi(cookie);
+    setIsEdit(false);
+    message.success('New Cookie Set');
   };
 
   const onCancel = () => {

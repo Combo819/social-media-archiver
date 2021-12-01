@@ -10,14 +10,4 @@ interface IAccountService {
   validateCookie(cookie: string): Promise<boolean>;
 }
 
-type LoginStatusApi = {
-  preferQuickapp: number;
-  data: {
-    login: boolean;
-    st: string;
-    uid: string;
-  };
-  ok: number;
-};
-
-export { IAccountService, LoginStatusApi };
+export { IAccountService };
