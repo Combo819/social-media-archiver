@@ -1,5 +1,6 @@
-# Publish
-You can make a release of the source code and the binary executable files.
-1. rename `.github/workflows/publish.yml_backup` to `.github/workflows/publish.yml`
-2. (Optional) add changelog in `CHANGELOG.txt`
-3. run `lerna version`, this command will create a new tag and push to remote, which will trigger the Github Action `publish` to publish the release.
+# 发布
+
+您可以发布源代码和二进制可执行文件。 
+1. 将`.github/workflows/publish.yml_backup`重命名为`.github/workflows/publish.yml` 
+2. （可选）在`CHANGELOG.txt`中添加变更日志 
+3. 运行`lerna version`，这个命令会创建一个新的标签并推送到远程，这将触发 Github Action`publish`发布版本。

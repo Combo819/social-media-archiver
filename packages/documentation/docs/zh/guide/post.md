@@ -1,18 +1,18 @@
 # Post
 
-Here needs three steps to complete the post crawling: parse post id, request post and transform the response to fullfil the database requirement.
+这里需要三个步骤来完成 post 抓取:解析 post id、请求 post API 以及转换请求返回的数据，使之满足数据库的格式要求。
 
-## Parse
+## 解析
 
-For most of the social media platforms, an unique id is assigned for each post. And the post can be accessed by a url containing the id.  
-For example:
+对于大多数社交媒体平台来说，每个 post 都有一个唯一的 id。post 可以通过包含 id 的 url 访问。
+例如:
 
-- Twitter: `https://twitter.com/elonmusk/status/1457984721892352002`, the id is `1457984721892352002`
-- Facebook: `https://www.facebook.com/JustinPJTrudeau/posts/431525544996508`, the id is `431525544996508`
-- Youtube: `https://www.youtube.com/watch?v=c7nRTF2SowQ`, the id is `c7nRTF2SowQ`  
-  The user will submit this type of url, and we need to parse the id from the url.
+- Twitter: `https://twitter.com/elonmusk/status/1457984721892352002`, id 为 `1457984721892352002`
+- Facebook: `https://www.facebook.com/JustinPJTrudeau/posts/431525544996508`, id 为 `431525544996508`
+- Youtube: `https://www.youtube.com/watch?v=c7nRTF2SowQ`, id 为 `c7nRTF2SowQ`  
+  用户将提交这种类型的 url，我们需要从 url 解析出 id。
 
-In `packages/backend/src/Utility/parsePostId/parsePostId.ts`
+在 `packages/backend/src/Utility/parsePostId/parsePostId.ts`
 
 ```javascript
 /**
@@ -26,12 +26,12 @@ export async function parsePostId(urlStr: string): Promise<string> {
 }
 ```
 
-As the comment said, you should extract the post id from the url. Since most of the id is in the last part of the url, we can use the `getUrlLastSegment` to extract the id.
+正如评论所说，这个函数要实现从 url 提取 id 的功能。如果 id 是在 post 的最后一部分，我们可以使用`getUrlLastSegment`来提取 id。
 
 ## API
 
-In this step, you need to request the platform and get the response. You should look up the platform's developer documentation to know what is the exact url to request a post with id(not necessary the url submitted by user).  
-Or more straight forward, you can open the browser console, select the network panel, and observe which API call brings back the post information.
+在此步骤中，你需要请求平台的 API 来拿到 post 的信息。你可以直接去查询平台的开发者文档，查到通过一个 id 来请求 post 的确切 url 是什么。
+或者更简单粗暴，直接 F12 打开浏览器控制台，选择 Network，并观察哪个 API 返回了 post 信息。
 
 In `packages/backend/src/Components/Post/Service/postApi.ts`
 
@@ -44,19 +44,20 @@ function getPostApi(postId: string): AxiosPromise {
 }
 ```
 
-write the code like:
+大致照着这么写:
 
 ```typescript
 import { crawlerAxios } from '../../../Config';
 import { AxiosPromise } from 'axios';
 import { NotImplementedError } from '../../../Error/ErrorClass';
 function getPostApi(postId: string): AxiosPromise {
-  return crawlerAxios.get(`/PATH/OF/POST/${postId}`);
+  return crawlerAxios.get(`/PATH/TO/POST/${postId}`);
 }
 ```
 
-## Transform
-In `packages/backend/src/Components/Post/Service/postCrawler.ts`
+## 转换
+
+在 `packages/backend/src/Components/Post/Service/postCrawler.ts`
 
 ```typescript
 import cheerio from 'cheerio';
@@ -72,27 +73,34 @@ import cheerio from 'cheerio';
     throw new Error('Not implemented');
   }
 ```
-You should extract the information from the `res`, which is the response from the API call you just wrote above.  
-If it's a html document, you can use [cheerio](https://cheerio.js.org/) to manipulate the html.  
-- The `repostingId` is the id of the post that is reposted. return `""` if the post is not reposting any post.  
-- The `postInfo` is the raw post information from the platform, like the content, the images, the create time, the like count, etc. You should transform the raw post information to the `IPost` type. see `packages/backend/src/Components/Post/Types/postTypes.ts` 
-- The `userRaw` is the raw information of the author from the platform, like the name, the profile picture, etc. In most platform, the user information will be in the response too. You should read that object and assign it to `userRaw`.
-- The `embedImages` is the list of the image url embedded in the post. You can get the embedded images in the html with `cheerio`, and replace the `img` tag's `src` to local path. If there is no embedded images, or you prefer to use the image in platform's server, return an empty array.
 
+你可以从 `res` 中提取信息，它是你刚刚在上面写的 API 调用的响应。
+如果是 html 文档，可以使用[cheerio](https://cheerio.js.org/)来操作 html。
 
-## Test
-Once you finish the above steps, you can test the code in either the frontend UI or any Restful API tool.
-- in frontend, you can click the save button in the left top corner, input a valid post url, submit it, and refresh the page to see the result.
-- in restful api tool,
-To save a post:
+- `repostingId` 是被转发的 post 的 ID。如果 post 没有转发任何 post，则返回 `""`。
+- `postInfo` 是来自平台的原始 post 信息，如内容、图片、创建时间、点赞数等。您应该将原始 post 信息转换为 `IPost` 类型。见`packages/backend/src/Components/Post/Types/postTypes.ts`
+- `userRaw` 是作者在平台上的原始信息，如姓名、头像等。在大多数平台中，用户信息也会在响应中。您应该阅读该对象并将其分配给 `userRaw`。
+- `embedImages` 是嵌入在 post 中的图片 url 列表。你可以用`cheerio`获取 html 中嵌入的图片，并将`img`标签的`src`替换为本地路径。如果没有嵌入图像，或者您更喜欢使用平台服务器中的图像，则返回一个空数组。
+
+## 测试
+
+完成上述步骤后，您可以在前端 UI 或任何 Restful API 工具中测试代码。
+
+- 在前端，您可以单击左上角的保存按钮，输入有效的 post 网址，提交，然后刷新页面以查看结果。
+- 在 Restful API 工具中，  
+  新加一个 post：
+
 ```bash
 curl 'http://localhost:5000/api/post' \
   -H 'Content-Type: application/json' \
   --data-raw '{"postIdUrl":"https://example.com/post/ID"}' \
 ```
-To see the result:
+
+查看结果：
+
 ```bash
-curl 'http://localhost:5000/api/post' 
+curl 'http://localhost:5000/api/post'
 ```
-Now It should successfully return a post. The author's name will show `undefined` since we haven't save the author information yet.  
-feel free to go to the next section.
+
+现在它应该成功返回一个 post。 由于我们还没有保存作者信息，作者的名字将显示为 `undefined`。
+请继续看下一篇。

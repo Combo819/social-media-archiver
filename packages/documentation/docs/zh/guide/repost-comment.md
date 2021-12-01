@@ -1,6 +1,6 @@
 # Repost Comment
 
-When users repost a post, usually they add a comment to that repost. That is repost comment. For example, the quote tweets in twitter.
+当用户转发一个 post 时，他们通常会为该转发添加一条评论。这就是转发评论。例如，在微博中转发另一条微博。
 
 ## API
 
@@ -12,8 +12,8 @@ function getRepostCommentApi(): AxiosPromise {
 }
 ```
 
-You should implement this function to fetch repost comments from the platform.
-For example,
+实现这个函数以从平台获取转发评论。
+例如,
 
 ```typescript
 function getRepostCommentApi(
@@ -33,9 +33,9 @@ function getRepostCommentApi(
 }
 ```
 
-## Type
+## 类型
 
-in `packages/backend/src/Components/RepostComment/Types/repostCommentTypes.ts`,
+在 `packages/backend/src/Components/RepostComment/Types/repostCommentTypes.ts`,
 
 ```typescript
 type RepostCommentCrawlerParams = {
@@ -44,8 +44,8 @@ type RepostCommentCrawlerParams = {
 };
 ```
 
-You need to fill in the other parameters.  
-For example:
+你需要填写其他需要的参数的类型。
+例如:
 
 ```typescript
 type RepostCommentCrawlerParams = {
@@ -56,10 +56,10 @@ type RepostCommentCrawlerParams = {
 };
 ```
 
-## Crawl
+## 爬取
 
-In `packages/backend/src/Components/RepostComment/Service/repostCommentCrawler.ts`,
-`crawl` is the function that crawls the comments. It takes a `params`, which is from the previous `crawl` call.
+在`packages/backend/src/Components/RepostComment/Service/repostCommentCrawler.ts`中，
+`crawl` 是抓取评论的函数。 它需要一个 `params`，本次的`param`来自上一次的 `crawl` 调用。
 
 ```typescript
   startCrawling = (postId: string) => {
@@ -86,9 +86,9 @@ In `packages/backend/src/Components/RepostComment/Service/repostCommentCrawler.t
   };
 ```
 
-You should deconstruct the parameters from `params` then, and pass the parameters to the `getRepostCommentApi` function.
+然后你应该从 `params` 中解构参数，并将参数传递给 `getRepostCommentApi` 函数。
 
-For example:
+例如：
 
 ```typescript
   startCrawling = (postId: string) => {
@@ -117,7 +117,7 @@ For example:
 
 ## Next Params
 
-In `packages/backend/src/Components/RepostComment/Service/repostCommentCrawler.ts`, `transformNextParams` is the function that transforms the next parameters.
+在`packages/backend/src/Components/RepostComment/Service/repostCommentCrawler.ts`中，`transformNextParams`是转换下一组参数的函数。
 
 ```typescript
   private transformNextParams(
@@ -128,7 +128,7 @@ In `packages/backend/src/Components/RepostComment/Service/repostCommentCrawler.t
   }
 ```
 
-Example:
+例如：
 
 ```typescript
   private transformNextParams(
@@ -148,10 +148,10 @@ Example:
   }
 ```
 
-## Transform
+## 转换
 
-You should transform the data from the API call response `res` to the `IRepostComment` type so that the repost comments can be saved to the database.  
-This method should also return their corresponding user objects `usersRaw`.
+您应该将数据从 API 调用结果 `res` 转换为 `IRepostComment` 类型，以便可以将转发评论保存到数据库中。
+此方法还应返回其相应的用户对象 `usersRaw`。
 
 ```typescript
   private scrapeInfoUser(
@@ -165,7 +165,7 @@ This method should also return their corresponding user objects `usersRaw`.
   }
 ```
 
-Example:
+例如：
 
 ```typescript
   private scrapeInfoUser(

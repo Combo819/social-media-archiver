@@ -1,8 +1,8 @@
 # User
 
-## Transform
+## 转换
 
-in `packages/backend/src/Components/User/Service/userService.ts`
+在 `packages/backend/src/Components/User/Service/userService.ts`
 
 ```typescript
   transformUserResponse(userRaw: any): IUser {
@@ -12,12 +12,12 @@ in `packages/backend/src/Components/User/Service/userService.ts`
   }
 ```
 
-The function wil take in the raw user object. You should transform the raw user object into a `IUser` object. see `packages/backend/src/Components/User/Types/userTypes.ts`
+该函数将接收 userRaw 对象。 您得将 userRaw 对象转换为`IUser`对象。 见`packages/backend/src/Components/User/Types/userTypes.ts`
 
-## (Optional) API
+## (可选) API
 
-In most cases, you will not need to make a API request to get the user information, since the user information is usually attached to the other response.
-in `packages/backend/src/Components/User/Service/userApi.ts`,
+在大多数情况下，您不需要通过 API 请求来获取 user 信息，因为 user 信息通常会附加到其他请求中。
+在`packages/backend/src/Components/User/Service/userApi.ts`中，
 
 ```typescript
 function getUserInfoByIdApi(userId: string): Promise<unknown> {
@@ -25,8 +25,8 @@ function getUserInfoByIdApi(userId: string): Promise<unknown> {
 }
 ```
 
-this should return a promise resolved to be the userRaw object to meet the format of userService.transformUserResponse parameter.
-If not, transform it to the userRaw object in then and return it.
+这函数需要返回一个 resolve 为 userRaw 对象的 promise，以满足 `userService.transformUserResponse` 参数的格式。
+如果请求的结果不是 userRaw，则在 then 中将其转换为 userRaw 对象并返回。
 
 ```typescript
 function getUserInfoByIdApi(userId: string): Promise<unknown> {

@@ -1,4 +1,4 @@
-# Disclaimer
-The social media archiver is under MIT license. Use it at your own risk.  
-Please obey and respect the platform API terms and conditions. Delete the content in time if necessary.  
-The social media archiver project is mainly for educational purposes. Using it as public service is not recommended.
+# 免责声明
+本项目采用MIT协议。自行承担使用本项目所引起的任何风险。
+请遵守各平台API的条款和条件。如有必要，请及时删除下载的内容。
+本项目用于学习与交流，请勿公开部署。

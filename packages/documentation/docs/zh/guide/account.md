@@ -1,11 +1,12 @@
 # Account
 
-The account component is used to manage the cookie. The cookie submitted from the frontend is handled in the account component.
+account 组件用于管理 cookie。 从前端提交的 cookie 在 account 组件中处理。
 
-## Validate(Optional)
+## 校验(可选)
 
-Before the frontend sends the cookie, it will validate the cookie.  
-In `packages/backend/src/Components/Account/Service/accountApi.ts`
+在前端发送 cookie 之前，它会验证 cookie。
+在`packages/backend/src/Components/Account/Service/accountApi.ts`
+
 ```TypeScript
 function getLoginStatusApi(cookie: string): AxiosPromise<any> {
   return {
@@ -16,26 +17,33 @@ function getLoginStatusApi(cookie: string): AxiosPromise<any> {
   };
 }
 ```
-This `getLoginStatusApi` will return a login status and a user id, indicating which user the cookie belongs to. By default, it always return `false` and `''`, but the frontend can choose to "add cookie anyway". You can override this function to validate the cookie with real API.
 
-## Attach(Optional)
-In `packages/backend/src/Config/axios.ts`
-By default, all API request to the platform will be intercepted and attached with the cookie, if the cookie is set.  
+`getLoginStatusApi` 将返回一个 login status 和一个用户 ID，表明 cookie 属于哪个用户。 默认情况下，它总是返回 `false` 和 `''`，但前端可以选择“add cookie anyway”。 您可以覆盖此函数以使用真实 API 验证 cookie。
+
+## 附带cookie(可选)
+
+在`packages/backend/src/Config/axios.ts`
+默认情况下，如果设置了 cookie，所有对平台的 API 请求都会被拦截并加上 cookie。
+
 ```TypeScript
     if (accountService.getMode() === 'cookie') {
       request.headers['cookie'] = accountService.getCookie();
     }
 ```
-If the platform use other approach to authorize, you can override this function.  
-For example, if the platform uses `Authorization` header, you can override this function to add `Authorization` header.
+
+如果平台使用其他方式授权，您可以重写此函数。
+例如，如果平台使用 `Authorization` header，您可以重写此函数以添加 `Authorization` header。
+
 ```typescript
-    if (accountService.getMode() === 'cookie') {
-      request.headers['Authorization'] = `Bearer ${accountService.getCookie()}`;
-    }
+if (accountService.getMode() === 'cookie') {
+  request.headers['Authorization'] = `Bearer ${accountService.getCookie()}`;
+}
 ```
-and some other platform may use `api_key` to authorize.
+
+其他某些平台可能会使用`api_key`来授权。
+
 ```typescript
-    if (accountService.getMode() === 'cookie') {
-      request.params['api_key'] = accountService.getCookie();
-    }
+if (accountService.getMode() === 'cookie') {
+  request.params['api_key'] = accountService.getCookie();
+}
 ```

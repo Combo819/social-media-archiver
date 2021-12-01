@@ -1,47 +1,47 @@
-# Introduction
+# 简介
 
-**Social Media Archiver** is a Node.js template to be implemented to archive post from any social media.  
-After it's implemented, it can archive a post with the images and videos, and the comments and sub comments.  
- Moreover, it has a UI webpage to submit the targeting post url and also recover the posts on the webpage. All data as well as the files are stored in your local, and no third-part server involved.
+**Social Media Archiver** 是一个 Node.js 模板，可以实现从任何社交媒体发布的存档。  
+在它实现后，它可以归档与图像和视频，以及评论和子评论的帖子。  
+此外，它还有一个 UI 网页，可以提交目标帖子 url，也可以恢复该网页上的帖子。所有数据和文件都存储在本地，不涉及第三方服务器。
 
 GitHub: [social-media-archiver](https://github.com/Combo819/social-media-archiver)  
- Youtube: [Introduction to social media archiver](https://www.youtube.com/)
+ B 站: [social media archiver 简介](https://bilibili.com/)
 
-## Inspiration
+## 灵感
 
-When I was using the social media, sometimes the post I like was deleted by the author or by the social media platform. I was eager to have a tool to archive the post with its comments and media. After trying couple of approaches, none of them are ideal.  
-For example:
+我在使用某社交媒体时，有时我喜欢的帖子，过几天再回去看就没了。有时可能被博主自己删了，有时可能被平台删了。 我希望有个工具来备份我喜欢的帖子。 在尝试了几种方法之后，它们都不是很理想。
+例如：
 
-- archive.me: hard to archive the comments that are loaded dynamically, neither the video files.
-- specific platform open-source crawler: most of them are research or business oriented, without a UI to recover the crawled posts for individual users.
-- taking screenshot: hard to organize. When time goes by, the screenshots will lost in among tons of other pictures in your album. The photos from the post aren't original.The text can't be selected.
+- archive.me：很难存档动态加载的评论，视频文件很难存档。
+- 特定平台的开源爬虫：大部分是研究或业务向的，比如用来做语义分析的等等。并不是面向个人用户，没有 UI。
+- 截屏：难以管理。 随着时间的流逝，截图会被淹没在手机相册的众多照片里。 帖子的照片也不是原图，并且无法选择文本。
 
-Finally, to archive the post I like in a social media platform, I decide to use Node.js to build a archive tool.
+最后，为了从社交媒体平台上备份我喜欢的帖子，我决定用 Node.js 写一个归档备份工具。
 
-## Structure
+## 结构
 
-Most of social media post has similar structure, as the following image shows:
+大多数社交媒体上的帖子都有类似的结构，如下图所示:
 
-1. author
-2. content
-3. embed images in content
-4. images or videos
-5. upvote
-6. comment
-7. sub comment
-8. repost
-9. repost comment
+1. author（作者）
+2. content （内容）
+3. embed images in content （内容中的图片）
+4. images or videos （图片或视频）
+5. upvote （点赞）
+6. comment （评论）
+7. sub comment （子评论）
+8. repost （转发）
+9. repost comment （转发评论）
 
-The posts don't necessarily have all these features, but most of the posts have some of them, especially the author, content, and comment.  
-Because of the similarity in structure, I notice that I can remove the platform specific code in my previous project, making it reusable for all platforms. You only need to add platform's API and the corresponding data transformation method, which is just half-day work.
+这些帖子不一定具备所有这些功能，但大多数帖子都具备其中一些功能，尤其是作者、内容和评论。
+由于结构上的相似性，我注意到我可以在以前的项目中删除特定于平台的代码，使其可用于所有平台。您只需要添加平台的 API 和相应的数据转换方法，这只是半天的工作。
 <img width="500px" src='./headbook.png'>
 ::: tip
-You can go to [head-book](https://head-book.ml), a mock social media platform, to see the example of this structure.
+[head-book](https://head-book.ml) 是一个假社交媒体网站，你可以在 headbook 上看这个结构的例子。  
 :::
 
-## How it work?
+## 运作原理
 
 ![An image](./simple-workflow.svg)
-The user submits a post url from webpage or the extension. The server get the post url and parse the post id out. Then the post id is passed to the crawler module, which fetches the post data and download the images&videos from the platform.   
-The request speed is controlled, to avoid 429 error. You can configure the request speed in the config file.  
-When the user is browsing the webpage, the web server takes the data from the database, and return it to the browser. Then the webpage will display the archived posts.
+用户从网页或扩展提交一个帖子 url。服务器获取发布 url 并解析发布 id。然后将帖子 id 传递给爬虫模块，爬虫模块获取帖子数据并从平台上下载图片和视频。  
+这也有一个模块负责控制请求速度，避免 429 错误。你可以在配置文件中配置请求速度。  
+当用户浏览网页时，web 服务器从数据库中获取数据，并将其返回给浏览器。然后网页将显示存档的帖子。

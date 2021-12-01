@@ -141,6 +141,7 @@ function getGuideSidebar(groupA, groupB, groupC, groupD) {
         'repost-comment',
         'subcomment',
         'account',
+        'monitor',
         'video',
       ],
     },

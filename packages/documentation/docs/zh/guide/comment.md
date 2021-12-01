@@ -2,8 +2,8 @@
 
 ## API
 
-Usually, comments are queried with the post id, and returned in batch.
-In `packages/backend/src/Components/Comment/Service/commentApi.ts`
+通常，评论通过 post id 查询，并批量返回。
+在`packages/backend/src/Components/Comment/Service/commentApi.ts`
 
 ```typescript
 function getCommentApi(/* params here */): AxiosPromise {
@@ -12,7 +12,7 @@ function getCommentApi(/* params here */): AxiosPromise {
 }
 ```
 
-You need to specify the params you need, and make the API call. For example,
+您需要指定所需的参数，然后调用平台的 API。 例如，
 
 ```typescript
 function getCommentApi(
@@ -30,10 +30,10 @@ function getCommentApi(
 }
 ```
 
-## Type
+## 类型
 
-in `packages/backend/src/Components/Comment/Types/commentTypes.ts`,
-fills in the type of the params to `CommentCrawlParams`,
+在`packages/backend/src/Components/Comment/Types/commentTypes.ts`中，
+将参数的类型填入`CommentCrawlParams`，
 
 ```typescript
 type CommentCrawlParams = {
@@ -42,7 +42,7 @@ type CommentCrawlParams = {
 };
 ```
 
-for example:
+例如：
 
 ```typescript
 type CommentCrawlParams = {
@@ -52,13 +52,13 @@ type CommentCrawlParams = {
 };
 ```
 
-## Crawl
+## 爬取
 
-in `packages/backend/src/Components/Comment/Service/commentCrawler.ts`
-`crawl` is the function that crawls the comments. It takes a `params`, which is from the previous `crawl` call.
+在`packages/backend/src/Components/Comment/Service/commentCrawler.ts`
+`crawl` 是抓取评论的函数。 它需要一个 `params`，本次的`param`来自上一次的 `crawl` 调用。
 
 ![](./comment-crawler.drawio.svg)
-You should first specify the initial parameters in `startCrawling`, to fetch the first batch of comments.
+您得首先在`startCrawling`中指定初始参数，以获取第一批评论。
 
 ```typescript
 startCrawling = (postId: string) => {
@@ -72,7 +72,8 @@ startCrawling = (postId: string) => {
 };
 ```
 
-For example:
+例如：
+
 ```typescript
 startCrawling = (postId: string) => {
   asyncPriorityQueuePush(
@@ -87,7 +88,7 @@ startCrawling = (postId: string) => {
 };
 ```
 
-You should deconstruct the parameters from `params` then, and pass the parameters to the `getCommentApi` function.
+然后从 `params` 中解构参数，并将参数传递给 `getCommentApi` 函数。
 
 ```typescript
   private crawl = async (params: CommentCrawlParams) => {
@@ -108,7 +109,7 @@ You should deconstruct the parameters from `params` then, and pass the parameter
 }
 ```
 
-Example:
+例如：
 
 ```typescript
   private crawl = async (params: CommentCrawlParams) => {
@@ -129,9 +130,9 @@ Example:
 }
 ```
 
-## Next Params
+## 下一组参数
 
-in `packages/backend/src/Components/Comment/Service/commentCrawler.ts`, `transformNextParams` is a function that transforms the `res` from the API call and the current `params` to the `nextParams`. If there is no next request, returns `null`.
+在`packages/backend/src/Components/Comment/Service/commentCrawler.ts`中，`transformNextParams`是一个将 API 调用中的`res`和当前`params`转换为`nextParams`的函数。 如果没有下一个请求，则返回 `null`。
 
 ```typescript
   private transformNextParams(
@@ -142,7 +143,7 @@ in `packages/backend/src/Components/Comment/Service/commentCrawler.ts`, `transfo
   }
 ```
 
-example:
+例如：
 
 ```typescript
 private transformNextParams(
@@ -162,10 +163,10 @@ private transformNextParams(
   }
 ```
 
-## Transform
+## 转换
 
-You should transform the data from the API call response `res` to the `IComment` type so that the comments can be saved to the database.   
-This method should also return their corresponding user objects `usersRaw`.
+您应该将数据从 API 返回的 `res` 转换为 `IComment` 类型，以便可以将评论保存到数据库中。
+此方法还应返回其相应的用户对象 `usersRaw`。
 
 ```typescript
   private scrapeData(
@@ -179,7 +180,7 @@ This method should also return their corresponding user objects `usersRaw`.
   }
 ```
 
-example:
+例如：
 
 ```typescript
   private scrapeData(

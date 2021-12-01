@@ -1,7 +1,7 @@
-# Build
-After you have completed the code, you can build binary executable files for Linux, Mac, and Windows.
-In project root directory, run:
+# 打包
+完成代码之后，就可以为Linux、Mac和Windows构建二进制可执行文件了。
+在工程根目录下，运行:
 ```bash
 npm run dist
 ```
-Then, archived files for each platform will be created in `dist` directory.
+打包后的文件将会在 `dist` 目录中。

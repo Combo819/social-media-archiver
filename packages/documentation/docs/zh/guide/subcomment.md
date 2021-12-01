@@ -1,11 +1,11 @@
 # Sub Comment
 
-sub comments are the second level of comments. Maybe called reply.
+子评论是第二级评论。有些平台可能叫做回复。
 
 ## API
 
-Usually, sub comments are queried with the parent comment id, and returned in batch.
-In `packages/backend/src/Components/SubComment/Service/subCommentApi.ts`
+通常，子评论通过评论 id 查询，并批量返回。
+在`packages/backend/src/Components/SubComment/Service/subCommentApi.ts`
 
 ```typescript
 function getSubCommentApi(): AxiosPromise {
@@ -13,7 +13,7 @@ function getSubCommentApi(): AxiosPromise {
 }
 ```
 
-You need to specify the params you need, and make the API call. For example,
+您需要指定所需的参数，并进行 API 调用。 例如，
 
 ```typescript
 function getSubCommentApi(commentId: string): AxiosPromise {
@@ -29,7 +29,7 @@ function getSubCommentApi(commentId: string): AxiosPromise {
 
 ## Type
 
-In `packages/backend/src/Components/SubComment/Types/subCommentTypes.ts`,
+在 `packages/backend/src/Components/SubComment/Types/subCommentTypes.ts`,
 
 ```typescript
 type SubCommentCrawlerParams = {
@@ -38,8 +38,8 @@ type SubCommentCrawlerParams = {
 };
 ```
 
-fills in the type of the params to `SubCommentCrawlerParams`,  
-Example:
+将参数的类型填入`SubCommentCrawlerParams`，
+例子：
 
 ```typescript
 type SubCommentCrawlerParams = {
@@ -51,8 +51,8 @@ type SubCommentCrawlerParams = {
 
 ## Crawl
 
-In `packages/backend/src/Components/SubComment/Service/subCommentCrawler.ts`
-`crawl` is the function that crawls the sub comments. It takes a `params`, which is from the previous `crawl` call.
+在`packages/backend/src/Components/SubComment/Service/subCommentCrawler.ts`
+`crawl` 是抓取子评论的函数。 它需要一个 `params`，本次的`param`来自上一次的 `crawl` 调用。
 
 ```typescript
   startCrawling = (commentId: string) => {
@@ -81,7 +81,7 @@ In `packages/backend/src/Components/SubComment/Service/subCommentCrawler.ts`
   };
 ```
 
-Example:
+例如：
 
 ```typescript
   startCrawling = (commentId: string) => {
@@ -110,10 +110,10 @@ Example:
   };
 ```
 
-## Next Params
+## 下一组评论
 
-In `packages/backend/src/Components/SubComment/Service/subCommentCrawler.ts`,
-`transformNextParams` is a function that transforms the `res` from the API call and the current `params` to the `nextParams`. If there is no next request, returns `null`.
+在`packages/backend/src/Components/SubComment/Service/subCommentCrawler.ts`中，
+`transformNextParams` 是一个将 API 返回的 `res` 和当前的 `params` 转换为下一组参数 `nextParams` 的函数。 如果没有下一个请求，则返回 `null`。
 
 ```typescript
   private transformNextParams(
@@ -124,7 +124,7 @@ In `packages/backend/src/Components/SubComment/Service/subCommentCrawler.ts`,
   }
 ```
 
-Example:
+例如：
 
 ```typescript
   private transformNextParams(
@@ -144,10 +144,10 @@ Example:
   }
 ```
 
-## Transform
+## 转换
 
-You should transform the data from the API call response `res` to the `ISubComment` type so that the sub comments can be saved to the database.  
-This method should also return their corresponding user objects `usersRaw`.
+您要将数据从 API 返回结果 `res` 转换为 `ISubComment` 类型，以便可以将子评论保存到数据库中。
+此方法还应返回其相应的用户对象 `usersRaw`。
 
 ```typescript
   private scrapeData(
@@ -161,7 +161,7 @@ This method should also return their corresponding user objects `usersRaw`.
   }
 ```
 
-Example:
+例如：
 
 ```typescript
   private scrapeData(
