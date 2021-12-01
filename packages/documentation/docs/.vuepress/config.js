@@ -135,7 +135,7 @@ function getGuideSidebar(groupA, groupB, groupC, groupD) {
     {
       title: groupA,
       collapsable: true,
-      children: ['', 'get-start', 'platform'],
+      children: ['', 'get-start'],
     },
     {
       title: groupB,
