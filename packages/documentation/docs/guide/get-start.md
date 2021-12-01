@@ -32,6 +32,14 @@ cd social-media-archiver
 npm ci --legacy-peer-deps
 ```
 
+## Config
+In `packages/backend/src/Config/constants.ts`:
+```typescript
+const BASE_URL: string = 'PLATFORM_DOMAIN';
+const Q_CONCURRENCY: number = 1; // number of concurrent API requests to the platform
+const MAX_ITEM_WINDOW: number = 6; // max number of API requests to the platform in a 30s window
+```
+
 ## Run
 
 Start both the frontend and backend by running:
