@@ -61,10 +61,6 @@ module.exports = {
             link: '/guide/',
           },
           {
-            text: 'Config',
-            link: '/config/',
-          },
-          {
             text: 'Github',
             link: 'https://github.com/Combo819/social-media-archiver',
           },
@@ -94,16 +90,14 @@ module.exports = {
             link: '/zh/guide/',
           },
           {
-            text: '配置',
-            link: '/zh/config/',
-          },
-          {
             text: 'Github',
             link: 'https://github.com/Combo819/social-media-archiver',
           },
         ],
         algolia: {},
-        sidebar: {},
+        sidebar: {
+          '/zh/guide/': getGuideSidebar('指导', '组件', '发布', '免责声明'),
+        },
       },
     },
   },

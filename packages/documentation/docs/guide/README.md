@@ -36,7 +36,7 @@ The posts don't necessarily have all these features, but most of the posts have 
 Because of the similarity in structure, I notice that I can remove the platform specific code in my previous project, making it reusable for all platforms. You only need to add platform's API and the corresponding data transformation method, which is just half-day work.
 <img width="500px" src='./headbook.png'>
 ::: tip
-You can use [head-book](https://head-book.ml), a mock social media platform, to see the example of this structure.
+You can go to [head-book](https://head-book.ml), a mock social media platform, to see the example of this structure.
 :::
 
 ## How it work?
