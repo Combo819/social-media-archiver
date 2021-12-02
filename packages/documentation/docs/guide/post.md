@@ -1,6 +1,6 @@
 # Post
 
-Here needs three steps to complete the post crawling: parse post id, request post and transform the response to fullfil the database requirement.
+Three steps to complete the post scraping: parse post id, request post and transform the response to fullfil the database requirement.
 
 ## Parse
 
@@ -51,7 +51,7 @@ import { crawlerAxios } from '../../../Config';
 import { AxiosPromise } from 'axios';
 import { NotImplementedError } from '../../../Error/ErrorClass';
 function getPostApi(postId: string): AxiosPromise {
-  return crawlerAxios.get(`/PATH/OF/POST/${postId}`);
+  return crawlerAxios.get(`/api/post/${postId}`);
 }
 ```
 
@@ -74,10 +74,10 @@ import cheerio from 'cheerio';
 ```
 You should extract the information from the `res`, which is the response from the API call you just wrote above.  
 If it's a html document, you can use [cheerio](https://cheerio.js.org/) to manipulate the html.  
-- The `repostingId` is the id of the post that is reposted. return `""` if the post is not reposting any post.  
+- The `repostingId` is the id of another post that is reposted by current post. return `""` if the post is not reposting any post.  
 - The `postInfo` is the raw post information from the platform, like the content, the images, the create time, the like count, etc. You should transform the raw post information to the `IPost` type. see `packages/backend/src/Components/Post/Types/postTypes.ts` 
 - The `userRaw` is the raw information of the author from the platform, like the name, the profile picture, etc. In most platform, the user information will be in the response too. You should read that object and assign it to `userRaw`.
-- The `embedImages` is the list of the image url embedded in the post. You can get the embedded images in the html with `cheerio`, and replace the `img` tag's `src` to local path. If there is no embedded images, or you prefer to use the image in platform's server, return an empty array.
+- The `embedImages` is the list of the image url embedded in the post. You can get the embedded images in the html with `cheerio`, and replace the `img` tag's `src` to local path. If there is no embedded images, or you prefer to use the images from platform's server, return an empty array.
 
 
 ## Test

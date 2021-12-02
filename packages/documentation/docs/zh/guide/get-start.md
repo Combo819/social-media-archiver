@@ -19,8 +19,8 @@
 git clone https://github.com/Combo819/social-media-archiver.git
 ```
 
-2. 安装依赖
-   对于 `npm<=6`:
+2. 安装依赖  
+对于 `npm<=6`:
 
 ```shell
 cd social-media-archiver
@@ -71,7 +71,7 @@ npm run start
 
 ![debug](./debug.png)
 
-然后，您可以使用诸如断点之类的调试工具，调试消息将显示在Terminal右边的调试控制台中。
+然后，你可以使用诸如断点之类的调试工具，调试消息将显示在Terminal右边的调试控制台中。
 
 ## 日志
 

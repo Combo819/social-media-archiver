@@ -25,8 +25,8 @@ function getUserInfoByIdApi(userId: string): Promise<unknown> {
 }
 ```
 
-this should return a promise resolved to be the userRaw object to meet the format of userService.transformUserResponse parameter.
-If not, transform it to the userRaw object in then and return it.
+this should return a promise resolved to be the `userRaw` object to meet the format of `userService.transformUserResponse` parameter.
+If not, transform it to the `userRaw` object in `then` and return it.
 
 ```typescript
 function getUserInfoByIdApi(userId: string): Promise<unknown> {

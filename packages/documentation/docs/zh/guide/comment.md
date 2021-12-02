@@ -12,7 +12,7 @@ function getCommentApi(/* params here */): AxiosPromise {
 }
 ```
 
-您需要指定所需的参数，然后调用平台的 API。 例如，
+你需要指定所需的参数，然后调用平台的 API。 例如，
 
 ```typescript
 function getCommentApi(
@@ -55,10 +55,10 @@ type CommentCrawlParams = {
 ## 爬取
 
 在`packages/backend/src/Components/Comment/Service/commentCrawler.ts`
-`crawl` 是抓取评论的函数。 它需要一个 `params`，本次的`param`来自上一次的 `crawl` 调用。
+`crawl` 是抓取评论的方法。 它需要一个 `params`，本次的`params`来自上一次的 `crawl` 调用。
 
 ![](./comment-crawler.drawio.svg)
-您得首先在`startCrawling`中指定初始参数，以获取第一批评论。
+你得首先在`startCrawling`中指定初始参数，以获取第一批评论。
 
 ```typescript
 startCrawling = (postId: string) => {
@@ -165,7 +165,7 @@ private transformNextParams(
 
 ## 转换
 
-您应该将数据从 API 返回的 `res` 转换为 `IComment` 类型，以便可以将评论保存到数据库中。
+你要将数据从 API 返回的 `res` 对象转换为 `IComment` 类型，以便可以将评论保存到数据库中。
 此方法还应返回其相应的用户对象 `usersRaw`。
 
 ```typescript

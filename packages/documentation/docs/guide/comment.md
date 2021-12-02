@@ -164,7 +164,7 @@ private transformNextParams(
 
 ## Transform
 
-You should transform the data from the API call response `res` to the `IComment` type so that the comments can be saved to the database.   
+You should transform the data from the API call response `res` to the `IComment` type in `packages/backend/src/Components/Comment/Types/commentTypes.ts` so that the comments can be saved to the database.   
 This method should also return their corresponding user objects `usersRaw`.
 
 ```typescript

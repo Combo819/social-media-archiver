@@ -12,11 +12,11 @@
   }
 ```
 
-该函数将接收 userRaw 对象。 您得将 userRaw 对象转换为`IUser`对象。 见`packages/backend/src/Components/User/Types/userTypes.ts`
+该函数将接收 userRaw 对象。 你得将 userRaw 对象转换为`IUser`对象。 见`packages/backend/src/Components/User/Types/userTypes.ts`
 
 ## (可选) API
 
-在大多数情况下，您不需要通过 API 请求来获取 user 信息，因为 user 信息通常会附加到其他请求中。
+在大多数情况下，你不需要通过 API 请求来获取 user 信息，因为 user 信息通常会附加到其他请求中。
 在`packages/backend/src/Components/User/Service/userApi.ts`中，
 
 ```typescript

@@ -20,7 +20,7 @@ private collectionTypes: CollectionTypes[] = ['chat', 'favorite']; //override th
 
 ## 处理方法
 
-每种类型的集合都有一个处理方法。 处理方法将为用户添加的所有特定类型的集合执行操作。 基本上，它只是请求集合 url，在本次请求的集合下，找到新添加的 post 的 id，并将新 post 爬下来。 您可以在 `packages/backend/src/Components/Monitor/Service/monitorApi.ts` 的 `collectionHandlers` 中添加处理方法
+每种类型的集合都有一个处理方法。 处理方法将为用户添加的所有特定类型的集合执行操作。 基本上，它只是请求集合 url，在本次请求的集合下，找到新添加的 post 的 id，并将新 post 爬下来。 你可以在 `packages/backend/src/Components/Monitor/Service/monitorApi.ts` 的 `collectionHandlers` 中添加处理方法
 例如：
 该平台有一个名为“收藏夹”`favorite`的集合类型。 并且收藏夹网址具有这样的格式：`http://www.example.com/api/favorite/{favoriteId}`。 然后在`collectionHandlers` 中你可以为这种类型的集合定义一个处理方法。
 

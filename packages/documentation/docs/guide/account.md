@@ -26,7 +26,7 @@ By default, all API request to the platform will be intercepted and attached wit
       request.headers['cookie'] = accountService.getCookie();
     }
 ```
-If the platform use other approach to authorize, you can override this function.  
+If the platform uses other approach to authorize, you can override this function.  
 For example, if the platform uses `Authorization` header, you can override this function to add `Authorization` header.
 ```typescript
     if (accountService.getMode() === 'cookie') {

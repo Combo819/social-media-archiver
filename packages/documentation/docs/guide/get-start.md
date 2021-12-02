@@ -53,7 +53,7 @@ Start both the frontend and backend by running:
 npm run start
 ```
 
-By default, the fronend will run on port `3000` and the backend will run on port `5000`.  
+By default, the frontend runs on port `3000` and the backend runs on port `5000`.  
 The API call from the frontend will be proxied to the port `5000`.
 Thus, if you are doing the frontend development, make sure the backend is running on port `5000`.  
 When you see
@@ -66,7 +66,7 @@ Then the backend is running.
 
 ## Debug
 
-To debug the backend, stop the running backend first, and open the debug panel in VS Code,
+To debug the backend, stop the backend first, and open the debug panel in VS Code,
 select the `Debug Backend` in the dropdown, and click the `Start Debugging` button.
 
 ![debug](./debug.png)

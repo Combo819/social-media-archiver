@@ -59,7 +59,7 @@ type RepostCommentCrawlerParams = {
 ## 爬取
 
 在`packages/backend/src/Components/RepostComment/Service/repostCommentCrawler.ts`中，
-`crawl` 是抓取评论的函数。 它需要一个 `params`，本次的`param`来自上一次的 `crawl` 调用。
+`crawl` 是抓取评论的函数。 它需要一个 `params`，本次的`params`来自上一次的 `crawl` 调用。
 
 ```typescript
   startCrawling = (postId: string) => {
@@ -150,7 +150,7 @@ type RepostCommentCrawlerParams = {
 
 ## 转换
 
-您应该将数据从 API 调用结果 `res` 转换为 `IRepostComment` 类型，以便可以将转发评论保存到数据库中。
+你应该将数据从 API 调用结果 `res` 转换为 `IRepostComment` 类型，以便可以将转发评论保存到数据库中。
 此方法还应返回其相应的用户对象 `usersRaw`。
 
 ```typescript

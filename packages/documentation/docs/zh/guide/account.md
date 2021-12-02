@@ -1,10 +1,10 @@
 # Account
 
-account 组件用于管理 cookie。 从前端提交的 cookie 在 account 组件中处理。
+account 组件用于管理 cookie。 从前端提交的 cookie 会在 account 组件中处理。
 
 ## 校验(可选)
 
-在前端发送 cookie 之前，它会验证 cookie。
+在前端发送 cookie 之前，它会验证 cookie 是否可用。
 在`packages/backend/src/Components/Account/Service/accountApi.ts`
 
 ```TypeScript
@@ -18,7 +18,7 @@ function getLoginStatusApi(cookie: string): AxiosPromise<any> {
 }
 ```
 
-`getLoginStatusApi` 将返回一个 login status 和一个用户 ID，表明 cookie 属于哪个用户。 默认情况下，它总是返回 `false` 和 `''`，但前端可以选择“add cookie anyway”。 您可以覆盖此函数以使用真实 API 验证 cookie。
+`getLoginStatusApi` 将返回一个 login status 和一个用户 ID，表明 cookie 属于哪个用户。 默认情况下，它总是返回 `false` 和 `''`，但前端可以选择“add cookie anyway”。 你可以覆盖此函数以使用真实 API 验证 cookie。
 
 ## 附带cookie(可选)
 
@@ -31,8 +31,8 @@ function getLoginStatusApi(cookie: string): AxiosPromise<any> {
     }
 ```
 
-如果平台使用其他方式授权，您可以重写此函数。
-例如，如果平台使用 `Authorization` header，您可以重写此函数以添加 `Authorization` header。
+如果平台使用其他方式授权，你可以重写此函数。
+例如，如果平台使用 `Authorization` header，你可以重写此函数以添加 `Authorization` header。
 
 ```typescript
 if (accountService.getMode() === 'cookie') {

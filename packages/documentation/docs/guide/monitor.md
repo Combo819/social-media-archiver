@@ -1,10 +1,10 @@
 # Monitor
 
-The monitor component is used to monitor the collection of the platform. When a new post is added to the monitored collection, the monitor component will trigger the backing up of the post.
+The monitor component is used to monitor the collection of posts in platform. When a new post is added to the monitored collection, the monitor component will trigger the archiving of the post.
 
 ## Types
 
-First, we need to define the types of the collection. There are many different types of collections in different platforms. For example, favorite, watchLater, history, chat, like, etc. You should define the types in two different places.
+First, we need to define the types of the collection. There are many different types of collections in different platforms. For example, favorite, watchLater, history, chat, like, etc. You should define the types in two different places.  
 In `packages/backend/src/Components/Monitor/Types/monitorTypes.ts`
 
 ```typescript
@@ -19,7 +19,7 @@ private collectionTypes: CollectionTypes[] = ['chat', 'favorite']; //override th
 
 ## Handler
 
-Each type of collection has a handler. The handler will do things for all the specific type of collections added by user. Basically, it just request the collection url, get the last post id, and archive the new posts. You should add handler in `collectionHandlers` in `packages/backend/src/Components/Monitor/Service/monitorApi.ts`
+Each type of collection has a handler. The handler will do things for all the collections of this specified type added by user. Basically, it just request the collection url, get the last posts, and archive the new posts. You should add handler in `collectionHandlers` in `packages/backend/src/Components/Monitor/Service/monitorApi.ts`
 For example:  
 The platform has a collection type called `favorite`. And the favorite collection url has such format: `http://www.example.com/api/favorite/{favoriteId}`. Then in `collectionHandlers` you can define a handler for this type of collection.
 
@@ -39,4 +39,4 @@ const collectionHandlers: {
 };
 ```
 
-The user will add some favorite url, and then the `favorite` handler will trigger archiving of the posts that new added into the `favorite` collection.
+The user will add some favorite url, and then the `favorite` handler will trigger archiving of the posts that newly added into the `favorite` collection.
