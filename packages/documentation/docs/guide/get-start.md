@@ -9,7 +9,7 @@
 
 1. Node.js
 2. npm
-3. [lerna](https://lerna.js.org/#getting-started)
+3. [lerna](https://lerna.js.org/#getting-started): `npm i -g lerna`
 
 ## Setup
 
@@ -80,14 +80,16 @@ In production mode, the log file is in `log/social-media-archiver.log`.
 You can use [pino-pretty](https://github.com/pinojs/pino-pretty) to pretty print the log file.
 
 ## Commit
+
 This repository use `git-cz`. Run `npm run commit` to commit the changes to the repository. It will generate a commit message template for you.
 
 ## Tech stack
-+ Frontend: [React](https://reactjs.org/)
-+ UI: [Ant Design](https://ant.design/)
-+ Server: [Express](https://expressjs.com/)
-+ Html Manipulation: [cheerio](https://cheerio.js.org/)
-+ Inversion of Control: [inversify](https://inversify.io/)
-+ Flow Control: [async](https://caolan.github.io/async/v3/)
-+ Database: [rxdb](https://rxdb.info/)
-+ Packaging: [pkg](https://github.com/vercel/pkg)
+
+- Frontend: [React](https://reactjs.org/)
+- UI: [Ant Design](https://ant.design/)
+- Server: [Express](https://expressjs.com/)
+- Html Manipulation: [cheerio](https://cheerio.js.org/)
+- Inversion of Control: [inversify](https://inversify.io/)
+- Flow Control: [async](https://caolan.github.io/async/v3/)
+- Database: [rxdb](https://rxdb.info/)
+- Packaging: [pkg](https://github.com/vercel/pkg)

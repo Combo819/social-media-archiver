@@ -9,7 +9,7 @@
 
 1. Node.js
 2. npm
-3. [lerna](https://lerna.js.org/#getting-started)
+3. [lerna](https://lerna.js.org/#getting-started): `npm i -g lerna`
 
 ## 安装
 
