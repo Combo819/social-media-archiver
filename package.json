@@ -1,9 +1,6 @@
 {
   "private": true,
   "version": "1.0.1",
-  "workspaces": [
-    "packages/*"
-  ],
   "name": "social-media-archiver",
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
