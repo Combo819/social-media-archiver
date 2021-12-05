@@ -7,7 +7,7 @@ const archiver = require('archiver');
 async function pkgScript() {
   const ROOT_PATH = '../../';
   try {
-    await execa.command('npx lerna run build');
+    await execa.command('lerna run build');
     await fs.remove(path.resolve(ROOT_PATH, 'dist'));
     await fs.remove(path.resolve('dist'));
     const { stdout } = await execa('npm', ['run', 'pkg'], { shell: true });
