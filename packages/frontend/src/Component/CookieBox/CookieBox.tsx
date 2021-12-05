@@ -21,7 +21,7 @@ function CookieBox(props: CookieBoxProps) {
 
   const [form] = Form.useForm();
   const [isEdit, setIsEdit] = useState(false);
-  const [cookie, setCookie] = useState(`Cookie doesn't exist`);
+  const [cookie, setCookie] = useState(``);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
@@ -30,17 +30,17 @@ function CookieBox(props: CookieBoxProps) {
       .then((res) => {
         const cookie: string = res.data.result;
         if (!cookie) {
-          setCookie(`Cookie doesn't exist`); 
+          setCookie(``);
         } else {
           setCookie(cookie);
-          form.setFieldsValue({ cookie });
         }
       })
       .catch((err) => {
-        form.setFieldsValue({ cookie: `Cookie doesn't exist` });
-        setCookie(`Cookie doesn't exist`);
+        setCookie(``);
       })
-      .finally(() => {});
+      .finally(() => {
+        form.setFieldsValue({ cookie: `` });
+      });
   };
 
   useEffect(() => {
@@ -90,6 +90,7 @@ function CookieBox(props: CookieBoxProps) {
   const submitCookie = async (cookie: string) => {
     await setCookieApi(cookie);
     setIsEdit(false);
+    setCookie(cookie);
     message.success('New Cookie Set');
   };
 
@@ -105,19 +106,12 @@ function CookieBox(props: CookieBoxProps) {
           name="cookie"
           className={styles['form-item']}
           labelCol={{ span: 24 }}
-          label={
-            <>
-              <a target="_blank" href="#">
-                soc.com
-              </a>{' '}
-              &nbsp;cookie
-            </>
-          }
+          label={'Cookie'}
         >
           {isEdit ? (
             <Input.TextArea rows={6}></Input.TextArea>
           ) : (
-            <p>{cookie}</p>
+            <p>{cookie || `Cookie doesn't exist`}</p>
           )}
         </Form.Item>
         <Form.Item>
