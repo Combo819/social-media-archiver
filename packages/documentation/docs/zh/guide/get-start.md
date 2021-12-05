@@ -20,21 +20,11 @@ git clone https://github.com/Combo819/social-media-archiver.git
 ```
 
 2. 安装依赖  
-对于 `npm<=6`:
 
 ```shell
 cd social-media-archiver
-npm ci
 lerna bootstrap
 ```
-
-对于 `npm>=7`:
-
-```shell
-cd social-media-archiver
-npm ci --legacy-peer-deps
-```
-
 ## 配置
 
 In `packages/backend/src/Config/constants.ts`:
