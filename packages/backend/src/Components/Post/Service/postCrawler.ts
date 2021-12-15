@@ -93,8 +93,6 @@ class PostCrawler implements IPostCrawler {
         this.transformData(res);
 
       postDoc = await this.postService.save(postInfo);
-      const userInfo = this.userService.transformUserResponse(userRaw);
-      this.userService.save(userInfo);
 
       // save the embed images
       embedImages.forEach(async (imageUrl) => {
@@ -120,7 +118,9 @@ class PostCrawler implements IPostCrawler {
           this.videoService.downloadVideo(video.originUrl);
         });
       }
-
+      const userInfo = this.userService.transformUserResponse(userRaw);
+      this.userService.save(userInfo);
+      
       this.commentService.startCrawling(postDoc.get('id'));
       this.repostCommentService.startCrawling(postDoc.get('id'));
 
