@@ -77,7 +77,19 @@ If it's a html document, you can use [cheerio](https://cheerio.js.org/) to manip
 - The `repostingId` is the id of another post that is reposted by current post. return `""` if the post is not reposting any post.  
 - The `postInfo` is the raw post information from the platform, like the content, the images, the create time, the like count, etc. You should transform the raw post information to the `IPost` type. see `packages/backend/src/Components/Post/Types/postTypes.ts` 
 - The `userRaw` is the raw information of the author from the platform, like the name, the profile picture, etc. In most platform, the user information will be in the response too. You should read that object and assign it to `userRaw`.
-- The `embedImages` is the list of the image url embedded in the post. You can get the embedded images in the html with `cheerio`, and replace the `img` tag's `src` to local path. If there is no embedded images, or you prefer to use the images from platform's server, return an empty array.
+- The `embedImages` is the list of the image url embedded in the post. You can get the embedded images in the html with `cheerio`, and replace the `img` tag's `src` to local path. If there is no embedded images, or you prefer to use the images from platform's server, return an empty array.  
+Example of embedded images:
+```typescript
+const embedImages: string[] = [];
+  $('img').each(function (index: number, element: any) {
+    const oldSrc = $(element).attr("src");
+    if (!oldSrc) return
+    const fileName: string = _.last(oldSrc.split('/')) as string;
+    const newSrc = `/images/${fileName}`;
+    embedImages.push(BASE_URL + oldSrc)
+    $(element).attr('src', newSrc);
+  })
+```
 
 
 ## Test

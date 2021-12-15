@@ -80,8 +80,20 @@ import cheerio from 'cheerio';
 - `repostingId` 是被转发的 post 的 ID。如果当前 post 没有转发任何 post，则返回 `""`。
 - `postInfo` 是来自平台的原始 post 信息，如内容、图片、创建时间、点赞数等。你应该将原始 post 信息转换为 `IPost` 类型。见`packages/backend/src/Components/Post/Types/postTypes.ts`
 - `userRaw` 是本条贴文作者在平台上的原始信息，如姓名、头像等。在大多数平台中，用户信息会直接附带在请求贴文的响应中。你要读取整个对象并赋给 `userRaw`。
-- `embedImages` 是嵌入在 post 中的图片 url 列表。你可以用`cheerio`获取 html 中嵌入的图片，并将`img`标签的`src`替换为本地路径。如果没有嵌入图像，或者你更喜欢直接使用平台服务器中的图像，则返回一个空数组。
-
+- `embedImages` 是嵌入在 post 中的图片 url 列表。你可以用`cheerio`获取 html 中嵌入的图片，并将`img`标签的`src`替换为本地路径。如果没有嵌入图像，或者你更喜欢直接使用平台服务器中的图像，则返回一个空数组。  
+`embedImages`的例子
+  
+```typescript
+const embedImages: string[] = [];
+  $('img').each(function (index: number, element: any) {
+    const oldSrc = $(element).attr("src");
+    if (!oldSrc) return
+    const fileName: string = _.last(oldSrc.split('/')) as string;
+    const newSrc = `/images/${fileName}`;
+    embedImages.push(BASE_URL + oldSrc)
+    $(element).attr('src', newSrc);
+  })
+```
 ## 测试
 
 完成上述步骤后，你可以在前端 UI 或任何 Restful API 工具中测试代码。
