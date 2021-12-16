@@ -121,8 +121,8 @@ class PostCrawler implements IPostCrawler {
       const userInfo = this.userService.transformUserResponse(userRaw);
       this.userService.save(userInfo);
       
-      this.commentService.startCrawling(postDoc.get('id'));
-      this.repostCommentService.startCrawling(postDoc.get('id'));
+      //this.commentService.startCrawling(postDoc.get('id'));
+      //this.repostCommentService.startCrawling(postDoc.get('id'));
 
       if (repostingId) {
         this.startCrawling(repostingId);

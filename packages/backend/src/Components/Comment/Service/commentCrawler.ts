@@ -78,7 +78,7 @@ class CommentCrawler {
       const commentDoc = await this.commentService.save(comment);
 
       //trigger the sub comment crawling
-      this.subCommentService.startCrawling(commentDoc.get('id'));
+      //this.subCommentService.startCrawling(commentDoc.get('id'));
     });
 
     usersRaw.forEach((userRaw: any) => {
