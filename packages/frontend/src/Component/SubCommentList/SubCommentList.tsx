@@ -50,7 +50,7 @@ export default function CommentList() {
             bordered
             split
             loading={loading}
-            itemLayout="horizontal"
+            itemLayout="vertical"
             dataSource={(subComments || []) as ISubComment[]}
             renderItem={(subComment) => (
               <List.Item
