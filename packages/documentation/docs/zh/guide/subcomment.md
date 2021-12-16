@@ -131,7 +131,7 @@ type SubCommentCrawlerParams = {
     res: any,
     prevParams: SubCommentCrawlerParams,
   ): SubCommentCrawlerParams | null {
-    const { commentId, page, pageSize } = params;
+    const { commentId, page, pageSize } = prevParams;
     const { data } = res;
     if(data.length === 0) { // no more sub comments
       return null;
@@ -180,10 +180,9 @@ type SubCommentCrawlerParams = {
         commentId,
         floorNumber: -1,
         content: raw.content,
-        user: user.id,
+        user: raw.user.id,
         upvotesCount: raw.upvotesCount,
-        createTime: dayjs(commentRaw.createTime).valueOf(),
-        commentId: raw.commentId,
+        createTime: dayjs(raw.createTime).valueOf(),
         saveTime: dayjs().valueOf(),
         replyTo: raw.replyTo,
       };
