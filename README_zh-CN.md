@@ -10,7 +10,7 @@
 
 Social Media Archiver 是一个 Node.js 模板，只需写少许平台相关代码，便能存档该平台的帖子(Post)。<br />
 文档: <a href="https://social-media-archiver.ml/zh/">https://social-media-archiver.ml/zh/</a> <br />
-演示: <a href="https://bilibili.com">video-place-holder</a> <br />  
+演示: <a href="https://www.bilibili.com/video/BV1bM4y1c7a9/">Social Media Archiver 社交平台存档器</a> <br />  
 ## 快速开始
 1. 克隆仓库 (也可以直接点击上面的 Gitpod 按钮)
 ```
