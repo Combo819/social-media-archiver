@@ -5,7 +5,7 @@ After it's implemented, it can archive a post with the images and videos, and th
  Moreover, it has a UI webpage to submit the targeting post url and also recover the posts on the webpage. All data as well as the files are stored in your local, and no third-part server involved.
 
 GitHub: [social-media-archiver](https://github.com/Combo819/social-media-archiver)  
- Youtube: [Introduction to social media archiver](https://www.youtube.com/)
+ Youtube: [Social Media Archiver](https://www.youtube.com/watch?v=7yGxmkiJSt8)
 
 ## Inspiration
 

@@ -5,7 +5,7 @@
 此外，它还有一个 UI 网页，可以从这网页上提交想要存档的帖子的 url，也可以在这网页上浏览存档的帖子。所有数据和文件都存储在本地，不涉及第三方服务器。
 
 GitHub: [social-media-archiver](https://github.com/Combo819/social-media-archiver)  
- B 站: [social media archiver 简介](https://bilibili.com/)
+ B 站: [Social Media Archiver 社交平台存档器](https://www.bilibili.com/video/BV1bM4y1c7a9/)
 
 ## 灵感
 
